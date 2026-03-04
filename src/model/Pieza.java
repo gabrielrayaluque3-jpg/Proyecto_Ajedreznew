@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Objects;
+
+public abstract class Pieza {
 public class Pieza {
 
     //las posiciones son del 0 al 7
@@ -51,3 +54,30 @@ public class Pieza {
     }
 }
 
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public abstract boolean sePuedeMover(int nuevaFila, int nuevaColumna);
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pieza pieza = (Pieza) o;
+        return fila == pieza.fila && columna == pieza.columna && color == pieza.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fila, columna, color);
+    }
+
+    @Override
+    public String toString() {
+        return "Fila: " + fila + ", Columna: " + columna + ", Color: " + color;
+    }
+}
