@@ -1,7 +1,9 @@
 package model;
 
-public class Rey {
+public class Rey{
     private int puntos;
+
+
 
     @Override
     public String toString() {
