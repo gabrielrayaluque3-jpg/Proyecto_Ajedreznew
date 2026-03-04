@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public class Pieza {
+public abstract class Pieza {
 
     //las posiciones son del 0 al 7
     protected int fila;
@@ -61,6 +61,8 @@ public class Pieza {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+
+    public abstract boolean sePuedeMover(int nuevaFila, int nuevaColumna);
 
     @Override
     public boolean equals(Object o) {
