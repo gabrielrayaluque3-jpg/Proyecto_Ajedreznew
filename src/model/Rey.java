@@ -1,6 +1,5 @@
 package model;
 
-public class Rey{
-
+public class Rey extends Pieza{
 
 }
