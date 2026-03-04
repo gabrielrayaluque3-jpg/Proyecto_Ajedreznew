@@ -1,16 +1,19 @@
 package model;
 
+import java.util.Objects;
+
 public class Pieza {
 
     //las posiciones son del 0 al 7
     protected int fila;
     protected int columna;  //las posiciones son del 0 al 7, pero en el tablero serian A-H
     protected Color color;  //es necesario el enum Color para saber si es blanca o negra
+    protected int puntos;
 
     public Pieza() {
     }
 
-    public Pieza(int fila, int columna) {
+    public Pieza(int fila, int columna,Color color,int puntos) {
         if (fila < 0 || fila > 7) {
             throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
         }
@@ -24,6 +27,7 @@ public class Pieza {
         this.fila = fila;
         this.columna = columna;
         this.color = color;
+        this.puntos = puntos;
     }
 
     public int getFila() {
@@ -49,5 +53,29 @@ public class Pieza {
     public void setColor(Color color) {
         this.color = color;
     }
-}
 
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pieza pieza = (Pieza) o;
+        return fila == pieza.fila && columna == pieza.columna && color == pieza.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fila, columna, color);
+    }
+
+    @Override
+    public String toString() {
+        return "Fila: " + fila + ", Columna: " + columna + ", Color: " + color;
+    }
+}
