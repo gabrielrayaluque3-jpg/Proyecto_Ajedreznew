@@ -34,7 +34,11 @@ public abstract class Pieza {
     }
 
     public void setFila(int fila) {
-        this.fila = fila;
+        if (fila < 0 || fila > 7) {
+            throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
+        }else {
+            this.fila = fila;
+        }
     }
 
     public int getColumna() {
@@ -42,7 +46,11 @@ public abstract class Pieza {
     }
 
     public void setColumna(int columna) {
-        this.columna = columna;
+        if (columna < 0 || columna > 7) {
+            throw new IllegalArgumentException("La columna debe estar entre 0 y 7. Valor recibido: " + columna);
+        }else {
+            this.columna = columna;
+        }
     }
 
     public Color getColor() {
