@@ -65,7 +65,7 @@ public abstract class Pieza {
         return this.fila != objetivo.getFila() && this.columna != objetivo.getColumna();
     }
 
-    public abstract int movimiento(int nuevaFila, int nuevaColumna);
+    public abstract int movimiento(int nuevaFila, int nuevaColumna, Tablero tablero);
 
     @Override
     public boolean equals(Object o) {
