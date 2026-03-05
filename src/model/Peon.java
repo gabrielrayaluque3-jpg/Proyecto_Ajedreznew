@@ -79,12 +79,11 @@ public class Peon extends Pieza {
 
     @Override
     public Pieza copiar() {
-        return new Peon(getFila(), getColumna(), getColor());
+        return new Peon(getFila(), getColumna(), getColor(), getPuntos());
     }
 
     @Override
     public String toString() {
         return (getColor() == Color.BLANCO) ? "♙" : "♟";
     }
-
 }
