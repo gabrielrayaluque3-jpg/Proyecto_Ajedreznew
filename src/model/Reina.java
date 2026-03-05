@@ -3,7 +3,7 @@ package model;
 import model.Color;
 import model.Pieza;
 
-public class Reina extends Pieza{
+public class Reina extends Pieza {
 
     public Reina(int fila, int columna, Color color) {
         super(fila, columna, color);
