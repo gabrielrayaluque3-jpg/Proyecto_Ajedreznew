@@ -10,7 +10,17 @@ public class Reina extends Pieza {
     }
 
     @Override
+    public int movimiento(int nuevaFila, int nuevaColumna) {
+        return 0;
+    }
+
+    @Override
     public boolean sePuedeMover(int nuevaFila, int nuevaColumna) {
+        return false;
+    }
+
+    @Override
+    public boolean puedeAtacar(Pieza objetivo) {
         return false;
     }
 
