@@ -5,7 +5,7 @@ public class Peon extends Pieza {
         super(fila, columna, color);
     }
 
-    public <Tablero> boolean puedoMover(int nuevaFila, int nuevaColumna, Tablero tablero){
+    public <Tablero> boolean puedoMover(int nuevaFila, int nuevaColumna, Tablero tablero ){
         /**
          * 1. Validar destino dentro del tablero (ya se hace en el constructor,
          *          pero para el movimiento usamos la lógica del tablero)
