@@ -57,9 +57,15 @@ public abstract class Pieza {
         return color;
     }
 
+    public boolean puedeAtacar(Pieza objetivo){
+        return objetivo.getColor() != this.getColor();
+    }
+
+    public boolean sePuedeMover(Pieza objetivo){
+        return this.fila != objetivo.getFila() && this.columna != objetivo.getColumna();
+    }
+
     public abstract int movimiento(int nuevaFila, int nuevaColumna);
-    public abstract boolean sePuedeMover(int nuevaFila, int nuevaColumna);
-    public abstract boolean puedeAtacar(Pieza objetivo);
 
     @Override
     public boolean equals(Object o) {
