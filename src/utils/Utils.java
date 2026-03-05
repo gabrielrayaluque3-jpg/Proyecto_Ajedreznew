@@ -8,18 +8,14 @@ public class Utils {
     }
 
     public static int calcularDireccion(int origen, int destino) {
-        return Integer.compare(destino, origen);
-    }
-
-    public static int obtenerDelta(int p1, int p2) {
-        return Math.abs(p2 - p1);
+        return Math.abs(Integer.compare(destino, origen));
     }
 
     public static boolean esDiagonal(int f1, int c1, int f2, int c2) {
-        return obtenerDelta(f1, f2) == obtenerDelta(c1, c2);
+        return calcularDireccion(f1, f2) == calcularDireccion(c1, c2);
     }
 
     public static boolean esRectilineo(int f1, int c1, int f2, int c2) {
-        return obtenerDelta(f1, f2) == obtenerDelta(c1, c2);
+        return calcularDireccion(f1, f2) == calcularDireccion(c1, c2);
     }
 }
