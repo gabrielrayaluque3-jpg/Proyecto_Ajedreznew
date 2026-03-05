@@ -71,4 +71,5 @@ public abstract class Pieza {
     public String toString() {
         return "Fila: " + fila + ", Columna: " + columna + ", Color: " + color;
     }
+
 }
