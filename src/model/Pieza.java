@@ -1,5 +1,7 @@
 package model;
 
+import utils.Utils;
+
 import java.util.Objects;
 
 public abstract class Pieza {
@@ -14,12 +16,7 @@ public abstract class Pieza {
     }
 
     public Pieza(int fila, int columna,Color color) {
-        if (fila < 0 || fila > 7) {
-            throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
-        }
-        if (columna < 0 || columna > 7) {
-            throw new IllegalArgumentException("La columna debe estar entre 0 y 7. Valor recibido: " + columna);
-        }
+        Utils.validarPosicion(fila,columna);
 
         if (color == null) {
             throw new IllegalArgumentException("El color no puede ser nulo.");
@@ -65,7 +62,7 @@ public abstract class Pieza {
         return this.fila != objetivo.getFila() && this.columna != objetivo.getColumna();
     }
 
-    public abstract int movimiento(int nuevaFila, int nuevaColumna);
+    public abstract Pieza movimiento(int nuevaFila, int nuevaColumna);
 
     @Override
     public boolean equals(Object o) {
