@@ -1,7 +1,7 @@
 import model.Color;
 import model.Pieza;
 
-public class Reina extends Pieza {
+public class Reina extends Pieza{
 
     public Reina(int fila, int columna, Color color) {
         super(fila, columna, color);
@@ -34,7 +34,7 @@ public class Reina extends Pieza {
 
     @Override
     public boolean puedeAtacar(Pieza objetivo, Tablero tablero) {
-        // La reina ataca igual que se mueve
+
         return puedeMover(objetivo.getFila(), objetivo.getColumna(), tablero);
     }
 
