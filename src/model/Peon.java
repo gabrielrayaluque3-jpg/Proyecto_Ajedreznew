@@ -1,11 +1,11 @@
 package model;
 
 public class Peon extends Pieza {
-    public Peon(int fila, int columna, Color color, int puntos) {
-        super(fila, columna, color, puntos);
+    public Peon(int fila, int columna, Color color) {
+        super(fila, columna, color);
     }
 
-    public <Tablero> boolean puedoMover(int nuevaFila, int nuevaColumna, Tablero tablero){
+    public <Tablero> boolean puedoMover(int nuevaFila, int nuevaColumna, Tablero tablero ){
         /**
          * 1. Validar destino dentro del tablero (ya se hace en el constructor,
          *          pero para el movimiento usamos la lógica del tablero)
@@ -60,7 +60,7 @@ public class Peon extends Pieza {
         return false;
     }
 
-    @Override
+
     public <Tablero> boolean puedeAtacar(Pieza objetivo, Tablero tablero) {
         /**
          * Un peón puede atacar a una pieza si está en su diagonal frontal
@@ -72,17 +72,17 @@ public class Peon extends Pieza {
         return distFila == direccion && distCol == 1;
     }
 
-    @Override
+
     public int getPuntos() {
         return 1;
     }
 
-    @Override
+
     public Pieza copiar() {
         return new Peon(getFila(), getColumna(), getColor(), getPuntos());
     }
 
-    @Override
+
     public String toString() {
         return (getColor() == Color.BLANCO) ? "♙" : "♟";
     }
