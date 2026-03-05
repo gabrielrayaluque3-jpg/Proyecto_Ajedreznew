@@ -3,17 +3,17 @@ package model;
 import java.util.Objects;
 
 public abstract class Pieza {
-public class Pieza {
 
     //las posiciones son del 0 al 7
     protected int fila;
     protected int columna;  //las posiciones son del 0 al 7, pero en el tablero serian A-H
     protected Color color;  //es necesario el enum Color para saber si es blanca o negra
+    //los puntos se añade como un final int en cada clase (final para que no cambie)
 
     public Pieza() {
     }
 
-    public Pieza(int fila, int columna) {
+    public Pieza(int fila, int columna,Color color) {
         if (fila < 0 || fila > 7) {
             throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
         }
@@ -34,7 +34,11 @@ public class Pieza {
     }
 
     public void setFila(int fila) {
-        this.fila = fila;
+        if (fila < 0 || fila > 7) {
+            throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
+        }else {
+            this.fila = fila;
+        }
     }
 
     public int getColumna() {
@@ -42,7 +46,11 @@ public class Pieza {
     }
 
     public void setColumna(int columna) {
-        this.columna = columna;
+        if (columna < 0 || columna > 7) {
+            throw new IllegalArgumentException("La columna debe estar entre 0 y 7. Valor recibido: " + columna);
+        }else {
+            this.columna = columna;
+        }
     }
 
     public Color getColor() {
@@ -51,15 +59,6 @@ public class Pieza {
 
     public void setColor(Color color) {
         this.color = color;
-    }
-}
-
-    public int getPuntos() {
-        return puntos;
-    }
-
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
     }
 
     public abstract boolean sePuedeMover(int nuevaFila, int nuevaColumna);
@@ -80,4 +79,5 @@ public class Pieza {
     public String toString() {
         return "Fila: " + fila + ", Columna: " + columna + ", Color: " + color;
     }
+
 }
