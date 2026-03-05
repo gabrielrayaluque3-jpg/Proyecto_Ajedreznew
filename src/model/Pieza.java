@@ -57,11 +57,9 @@ public abstract class Pieza {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
+    public abstract int movimiento(int nuevaFila, int nuevaColumna);
     public abstract boolean sePuedeMover(int nuevaFila, int nuevaColumna);
+    public abstract boolean puedeAtacar(Pieza objetivo);
 
     @Override
     public boolean equals(Object o) {
