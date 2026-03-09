@@ -62,7 +62,7 @@ public abstract class Pieza {
         return this.fila != objetivo.getFila() && this.columna != objetivo.getColumna();
     }
 
-    public abstract Pieza movimiento(int nuevaFila, int nuevaColumna);
+    public abstract boolean movimiento(int nuevaFila, int nuevaColumna);
 
     @Override
     public boolean equals(Object o) {
@@ -75,6 +75,10 @@ public abstract class Pieza {
     public int hashCode() {
         return Objects.hash(fila, columna, color);
     }
+
+    public abstract int getPuntos();
+
+    public abstract Pieza copiar();
 
     @Override
     public String toString() {
