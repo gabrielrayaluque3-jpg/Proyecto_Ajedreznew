@@ -1,32 +1,13 @@
 package model;
 
-import model.Color;
-import model.Pieza;
-
-public class Reina extends Pieza {
+public abstract class Reina extends Pieza {
 
     public Reina(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
 
     @Override
-    public int movimiento(int nuevaFila, int nuevaColumna) {
-        return 0;
-    }
-
-    @Override
-    public boolean sePuedeMover(int nuevaFila, int nuevaColumna) {
-        return false;
-    }
-
-    @Override
-    public boolean puedeAtacar(Pieza objetivo) {
-        return false;
-    }
-
-
-    @Override
-    public boolean puedeMover(int nuevaFila, int nuevaColumna, Tablero tablero) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna) {
         int filaOrigen = getFila();
         int colOrigen = getColumna();
 
@@ -49,6 +30,8 @@ public class Reina extends Pieza {
 
         return piezaDestino == null || piezaDestino.getColor() != this.getColor();
     }
+
+
 
     @Override
     public boolean puedeAtacar(Pieza objetivo, Tablero tablero) {
