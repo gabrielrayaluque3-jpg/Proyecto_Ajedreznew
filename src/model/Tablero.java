@@ -1,8 +1,6 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Tablero {
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
@@ -52,6 +50,9 @@ public class Tablero {
         return copia;
     }
 
+    private Pieza addPieza(Pieza pieza) {
+        return pieza;
+    }
 
     public Pieza addPieza(String nombre,int fila, int columna, Color color) {
         Pieza pieza = null;
