@@ -2,7 +2,7 @@ package model;
 
 import java.awt.*;
 
-public class Torre {
+public class Torre extends Pieza {
 
     private int fila;
     private int columna;
