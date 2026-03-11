@@ -1,6 +1,6 @@
 package model;
-
-public abstract class Reina extends Pieza {
+import utils.Utils;
+public class Reina extends Pieza {
 
     public Reina(int fila, int columna, Color color) {
         super(fila, columna, color);
@@ -34,12 +34,6 @@ public abstract class Reina extends Pieza {
 
 
     @Override
-    public boolean puedeAtacar(Pieza objetivo, Tablero tablero) {
-
-        return puedeMover(objetivo.getFila(), objetivo.getColumna(), tablero);
-    }
-
-    @Override
     public int getPuntos() {
         return 9;
     }
@@ -53,5 +47,6 @@ public abstract class Reina extends Pieza {
     public String toString() {
         return (getColor() == Color.BLANCO) ? "♕" : "♛";
     }
+
 }
 
