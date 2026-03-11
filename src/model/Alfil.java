@@ -7,15 +7,15 @@ public class Alfil extends Pieza {
         super(fila, columna, color);
     }
 
-    public int getPuntos() {
-        return 3;
-    }
-
     @Override
-    public boolean sePuedeMover(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna) {
         int distFila = nuevaFila - getFila();
         int distCol = nuevaColumna - getColumna();
         return distFila == distCol;
+    }
+
+    public int getPuntos() {
+        return 3;
     }
 
     @Override
@@ -27,4 +27,3 @@ public class Alfil extends Pieza {
         }
     }
 }
-
