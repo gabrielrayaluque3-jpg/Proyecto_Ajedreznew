@@ -28,7 +28,7 @@ public class Peon extends Pieza {
         /**
          * --- LÓGICA DE MOVIMIENTO (No ataque) ---
          */
-        if (distCol == 0) {
+        if (distCol == 0){
 
             Pieza destino = tablero.getPieza(nuevaFila, nuevaColumna);
 
@@ -43,17 +43,14 @@ public class Peon extends Pieza {
              * Movimiento inicial doble (2 casillas adelante)
              */
             if (filaOrigen == filaInicial && distFila == 2 * direccion) {
-                // No debe haber piezas ni en el destino ni en la casilla intermedia
                 return destino == null && !tablero.hayPiezasEntre(filaOrigen, colOrigen, nuevaFila, nuevaColumna);
             }
         }
 
-        /**
-         * --- LÓGICA DE ATAQUE ---
-         */
+
         if (distFila == direccion && distCol == 1) {
             Pieza piezaObjetivo = tablero.getPieza(nuevaFila, nuevaColumna);
-            // Solo puede mover aquí si hay una pieza enemiga (no nula y distinto color)
+
             return piezaObjetivo != null && piezaObjetivo.getColor() != this.getColor();
         }
 
@@ -73,13 +70,18 @@ public class Peon extends Pieza {
     }
 
 
+    @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+        return false;
+    }
+
     public int getPuntos() {
         return 1;
     }
 
 
     public Pieza copiar() {
-        return new Peon(getFila(), getColumna(), getColor(), getPuntos());
+        return new Peon(getFila(), getColumna(), getColor());
     }
 
 
