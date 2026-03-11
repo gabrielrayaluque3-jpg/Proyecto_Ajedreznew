@@ -31,14 +31,6 @@ public class Reina extends Pieza {
         return piezaDestino == null || piezaDestino.getColor() != this.getColor();
     }
 
-
-
-    @Override
-    public boolean puedeAtacar(Pieza objetivo, Tablero tablero) {
-
-        return puedeMover(objetivo.getFila(), objetivo.getColumna(), tablero);
-    }
-
     @Override
     public int getPuntos() {
         return 9;
