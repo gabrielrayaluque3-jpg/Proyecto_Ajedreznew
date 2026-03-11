@@ -28,7 +28,7 @@ public class Peon extends Pieza {
         /**
          * --- LÓGICA DE MOVIMIENTO (No ataque) ---
          */
-        if (distCol == 0)  {
+        if (distCol == 0){
 
             Pieza destino = tablero.getPieza(nuevaFila, nuevaColumna);
 
