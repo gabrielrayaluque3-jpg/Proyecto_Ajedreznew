@@ -1,5 +1,5 @@
 package model;
-
+import utils.Utils;
 public class Reina extends Pieza {
 
     public Reina(int fila, int columna, Color color) {
@@ -31,6 +31,8 @@ public class Reina extends Pieza {
         return piezaDestino == null || piezaDestino.getColor() != this.getColor();
     }
 
+
+
     @Override
     public int getPuntos() {
         return 9;
@@ -45,5 +47,6 @@ public class Reina extends Pieza {
     public String toString() {
         return (getColor() == Color.BLANCO) ? "♕" : "♛";
     }
+
 }
 
