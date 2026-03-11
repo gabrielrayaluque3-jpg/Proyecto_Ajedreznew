@@ -1,6 +1,7 @@
 package model;
 
-import java.awt.*;
+
+import utils.Utils;
 
 public class Torre extends Pieza {
 
@@ -63,6 +64,26 @@ public class Torre extends Pieza {
 
     public Color getColor() {
         return color;
+    }
+
+    @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+
+
+        if (Utils.esRectilineo(getFila(),getColumna(), nuevaFila, nuevaColumna)){
+            return true;
+        }
+
+        if (tablero.hayPiezasEntre(fila, columna, nuevaFila, nuevaColumna)) {
+            return false;
+        }
+
+        Pieza destino = tablero.getPieza(nuevaFila, nuevaColumna);
+
+        if (destino != null && destino.getColor() == this.color) {
+            return false;
+        }
+        return true;
     }
 
     @Override
