@@ -2,13 +2,56 @@ package model;
 
 import java.util.ArrayList;
 
+import static utils.Utils.calcularDireccion;
+
 public class Tablero {
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
 
-    public static final int[] fila=new int[8];
-    public static final int[] columna=new int[8];
+    public int puntuacionBlanca = 139;
+    public int puntuacionNegra = 139;
+
+    public static final int[] fila = new int[8];
+    public static final int[] columna = new int[8];
+
+    public int getPuntuacionBlanca(){
+        int sumaVivas = 0;
+        for (Pieza p : piezasBlancas) {
+            sumaVivas += p.getPuntos();
+        }
+
+        int sumaEliminadas = 0;
+        for (Pieza p : piezasEliminadas) {
+            if (p.getColor() == Color.BLANCO) {
+                sumaEliminadas += p.getPuntos();
+            }
+        }
+        return this.puntuacionBlanca = sumaVivas - sumaEliminadas;
+    }
+
+    public int getPuntuacionNegra(){
+        int sumaVivas = 0;
+        for (Pieza p : piezasNegras) {
+            sumaVivas += p.getPuntos();
+        }
+
+        int sumaEliminadas = 0;
+        for (Pieza p : piezasEliminadas) {
+            if (p.getColor() == Color.NEGRO) {
+                sumaEliminadas += p.getPuntos();
+            }
+        }
+        this.puntuacionNegra = sumaVivas - sumaEliminadas;
+    }
+
+    public void setPuntuacionBlanca(int puntuacionBlanca) {
+
+    }
+
+    public void setPuntuacionNegra(int puntuacionNegra) {
+
+    }
 
     public String printTablero() {
         String casillaBlanca = "░";
@@ -33,13 +76,13 @@ public class Tablero {
         return resultado;
     }
 
-    public void vaciarTablero(){
+    public void vaciarTablero() {
         piezasBlancas.clear();
         piezasNegras.clear();
         piezasEliminadas.clear();
     }
 
-    public Tablero crearCopiaTablero(){
+    public Tablero crearCopiaTablero() {
         Tablero copia = new Tablero();
         for (Pieza pieza : piezasBlancas) {
             copia.addPieza(pieza);
@@ -50,11 +93,38 @@ public class Tablero {
         return copia;
     }
 
+    public void reiniciarTablero() {
+        vaciarTablero();
+        addPieza("Reina", 0, 3, Color.BLANCO);
+        addPieza("Reina", 7, 3, Color.NEGRO);
+        addPieza("Torre", 0, 0, Color.BLANCO);
+        addPieza("Torre", 0, 7, Color.BLANCO);
+        addPieza("Torre", 7, 0, Color.NEGRO);
+        addPieza("Torre", 7, 7, Color.NEGRO);
+        addPieza("Alfil", 0, 2, Color.BLANCO);
+        addPieza("Alfil", 0, 5, Color.BLANCO);
+        addPieza("Alfil", 7, 2, Color.NEGRO);
+        addPieza("Alfil", 7, 5, Color.NEGRO);
+        addPieza("Caballo", 0, 1, Color.BLANCO);
+        addPieza("Caballo", 0, 6, Color.BLANCO);
+        addPieza("Caballo", 7, 1, Color.NEGRO);
+        addPieza("Caballo", 7, 6, Color.NEGRO);
+        for (int i = 0; i < 8; i++) {
+            addPieza("Peon", 1, i, Color.BLANCO);
+            addPieza("Peon", 6, i, Color.NEGRO);
+        }
+    }
+
     private Pieza addPieza(Pieza pieza) {
+        if (pieza.getColor() == Color.BLANCO) {
+            piezasBlancas.add(pieza);
+        } else {
+            piezasNegras.add(pieza);
+        }
         return pieza;
     }
 
-    public Pieza addPieza(String nombre,int fila, int columna, Color color) {
+    public Pieza addPieza(String nombre, int fila, int columna, Color color) {
         Pieza pieza = null;
         switch (nombre) {
             case "Reina":
@@ -92,7 +162,54 @@ public class Tablero {
         return null;
     }
 
+    public boolean hayPiezasEntre(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
+        int filaIncremento = calcularDireccion(filaOrigen, filaDestino);
+        int colIncremento = calcularDireccion(colOrigen, colDestino);
+        int filaActual = filaOrigen + filaIncremento;
+        int colActual = colOrigen + colIncremento;
 
+        while (filaActual != filaDestino && colActual != colDestino) {
+            if (getPieza(filaActual, colActual) != null) {
+                return true;
+            }
+            filaActual += filaIncremento;
+            colActual += colIncremento;
+        }
+        return false;
+    }
 
+    public void moverPieza(Pieza pieza, int nuevaFila, int nuevaColumna) {
 
+        Pieza piezaEnDestino = getPieza(nuevaFila, nuevaColumna);
+        if (!pieza.sePuedeMover(piezaEnDestino)) {
+            throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + nuevaFila + "," + nuevaColumna + ").");
+        }
+        else if (!pieza.puedeAtacar(piezaEnDestino)) {
+            throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + nuevaFila + "," + nuevaColumna + ").");
+        }else if (pieza instanceof Rey && getPieza(nuevaFila, nuevaColumna) instanceof Rey) {
+            throw new IllegalArgumentException("No se puede capturar al Rey.");
+        }else {
+            capturarPieza(piezaEnDestino);
+            pieza.movimiento(nuevaFila, nuevaColumna);
+        }
+
+        getPuntuacionBlanca();
+        getPuntuacionNegra();
+    }
+
+    public void capturarPieza(Pieza capturada) {
+        if (capturada.getColor() == Color.BLANCO) {
+            piezasBlancas.remove(capturada);
+        } else {
+            piezasNegras.remove(capturada);
+        }
+        piezasEliminadas.add(capturada);
+    }
+    public boolean jaque(){
+        //falta implementar
+        return false;
+    }
 }
+
+
+
