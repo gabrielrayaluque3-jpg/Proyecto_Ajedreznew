@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto_Ajedreznew.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tablero.java" afterDir="false" />
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="he borrado ClaseTorre que se habia duplicado en otro paquete">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelo/ClaseTorre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Torre.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,23 +22,31 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tprxd07"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tprxd07&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git",
-    "accountId": "f39306d2-1b24-4434-b78a-649ad9a0424d"
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git&quot;,
+    &quot;accountId&quot;: &quot;f39306d2-1b24-4434-b78a-649ad9a0424d&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="3AhzEsuOqBVDGKQ3EmOxqAZCbbg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -54,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/tablero",
+    "git-widget-placeholder": "bugfix/borrado-claseTorre",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -93,6 +98,19 @@
       <option name="presentableId" value="Default" />
       <updated>1773059485145</updated>
     </task>
+    <task id="LOCAL-00001" summary="he borrado ClaseTorre que se habia duplicado en otro paquete">
+      <option name="closed" value="true" />
+      <created>1773228064665</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1773228064665</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
+    <option name="LAST_COMMIT_MESSAGE" value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
   </component>
 </project>
