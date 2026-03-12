@@ -8,30 +8,11 @@ public class Reina extends Pieza {
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
-        int filaOrigen = getFila();
-        int colOrigen = getColumna();
-
-
-        boolean esRecto = (filaOrigen == nuevaFila || colOrigen == nuevaColumna);
-        boolean esDiagonal = Math.abs(nuevaFila - filaOrigen) == Math.abs(nuevaColumna - colOrigen);
-
-        if (!esRecto && !esDiagonal) {
-            return false;
+        if (Utils.esRectilineo(getFila(), getColumna(), nuevaFila, nuevaColumna) && !Utils.esDiagonal(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
+            return true;
         }
-
-
-        if (tablero.hayPiezasEntre(filaOrigen, colOrigen, nuevaFila, nuevaColumna)) {
-            return false;
-        }
-
-
-        Pieza piezaDestino = tablero.getPieza(nuevaFila, nuevaColumna);
-
-
-        return piezaDestino == null || piezaDestino.getColor() != this.getColor();
+        return false;
     }
-
-
 
     @Override
     public int getPuntos() {
