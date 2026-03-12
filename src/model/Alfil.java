@@ -21,6 +21,15 @@ public class Alfil extends Pieza {
     @Override
     public Pieza copiar() {
         return null;
+    @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+        int distFila = nuevaFila - getFila();
+        int distCol = nuevaColumna - getColumna();
+        return distFila == distCol;
+    }
+
+    public int getPuntos() {
+        return 3;
     }
 
     @Override
