@@ -12,7 +12,7 @@ public class Utils {
     }
 
     public static boolean esDiagonal(int f1, int c1, int f2, int c2) {
-        return Math.abs(f1 - f2) == Math.abs(c1 - c2);
+        return Math.abs(f1 - f2) == Math.abs(c1 - c2) && (f1 != f2) ;
     }
 
     public static boolean esRectilineo(int f1, int c1, int f2, int c2) {
