@@ -38,7 +38,11 @@ public class Rey extends Pieza {
 
     @Override
     public String toString() {
-        return (this.getColor() == Color.BLANCO) ? "♔" : "♚";
+        if (getColor() == Color.BLANCO) {
+            return "♚";
+        } else {
+            return "♔";
+        }
     }
 
     @Override
