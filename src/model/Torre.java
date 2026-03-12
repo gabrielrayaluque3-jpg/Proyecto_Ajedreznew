@@ -85,7 +85,10 @@ public class Torre extends Pieza {
         }
         return true;
     }
-
+    @Override
+    public Pieza copiar() {
+        return new Torre(getFila(), getColumna(), getColor());
+    }
     @Override
     public String toString() {
         return color == Color.BLANCO ? "♖" : "♜";
