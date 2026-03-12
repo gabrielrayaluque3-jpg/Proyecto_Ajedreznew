@@ -42,15 +42,7 @@ public class Tablero {
                 sumaEliminadas += p.getPuntos();
             }
         }
-        this.puntuacionNegra = sumaVivas - sumaEliminadas;
-    }
-
-    public void setPuntuacionBlanca(int puntuacionBlanca) {
-
-    }
-
-    public void setPuntuacionNegra(int puntuacionNegra) {
-
+        return this.puntuacionNegra = sumaVivas - sumaEliminadas;
     }
 
     public String printTablero() {
@@ -65,10 +57,15 @@ public class Tablero {
 
         for (int f = 0; f < fila.length; f++) {
             for (int c = 0; c < columna.length; c++) {
-                if ((fila[f] + columna[c]) % 2 == 1) {
-                    resultado = resultado + casillaBlanca;
+                Pieza p = getPieza(fila[f], columna[c]);
+                if (p != null) {
+                    resultado = resultado + p;
                 } else {
-                    resultado = resultado + casillaNegra;
+                    if ((fila[f] + columna[c]) % 2 == 1) {
+                        resultado = resultado + casillaBlanca;
+                    } else {
+                        resultado = resultado + casillaNegra;
+                    }
                 }
             }
             resultado = resultado + "\n";
@@ -190,7 +187,7 @@ public class Tablero {
             throw new IllegalArgumentException("No se puede capturar al Rey.");
         }else {
             capturarPieza(piezaEnDestino);
-            pieza.movimiento(nuevaFila, nuevaColumna);
+            pieza.movimiento(nuevaFila, nuevaColumna, this);
         }
 
         getPuntuacionBlanca();

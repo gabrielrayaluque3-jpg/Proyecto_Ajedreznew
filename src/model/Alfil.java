@@ -8,6 +8,20 @@ public class Alfil extends Pieza {
     }
 
     @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
+        int distFila = nuevaFila - getFila();
+        int distCol = nuevaColumna - getColumna();
+        return distFila == distCol;
+    }
+
+    public int getPuntos() {
+        return 3;
+    }
+
+    @Override
+    public Pieza copiar() {
+        return null;
+    @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna) {
         int distFila = nuevaFila - getFila();
         int distCol = nuevaColumna - getColumna();
@@ -19,6 +33,10 @@ public class Alfil extends Pieza {
     }
 
     @Override
+    public Pieza copiar() {
+        return new Alfil(getFila(), getColumna(), getColor());
+    }
+    @Override
     public String toString() {
         if (getColor() == Color.BLANCO) {
             return "♝";
@@ -27,4 +45,3 @@ public class Alfil extends Pieza {
         }
     }
 }
-

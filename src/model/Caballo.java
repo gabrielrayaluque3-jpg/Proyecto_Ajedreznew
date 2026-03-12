@@ -7,16 +7,22 @@ public class Caballo extends Pieza {
         super(fila, columna, color);
     }
 
+    @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
+        int distFila = nuevaFila - getFila();
+        int distCol = nuevaColumna - getColumna();
+        return (distFila == 2 && distCol == 1) || (distFila == 1 && distCol == 2);
+    }
+
     public int getPuntos() {
         return 3;
     }
 
     @Override
-    public boolean sePuedeMover(int nuevaFila, int nuevaColumna) {
-        int distFila = nuevaFila - getFila();
-        int distCol = nuevaColumna - getColumna();
-        return (distFila == 2 && distCol == 1) || (distFila == 1 && distCol == 2);
+    public Pieza copiar() {
+        return new Caballo(getFila(), getColumna(), getColor());
     }
+
 
     @Override
     public String toString() {

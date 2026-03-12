@@ -67,25 +67,29 @@ public class Torre extends Pieza {
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) {
 
 
         if (Utils.esRectilineo(getFila(),getColumna(), nuevaFila, nuevaColumna)){
             return true;
         }
 
-        if (tablero.hayPiezasEntre(fila, columna, nuevaFila, nuevaColumna)) {
+
+        if (Tablero.hayPiezasEntre(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
             return false;
         }
 
-        Pieza destino = tablero.getPieza(nuevaFila, nuevaColumna);
+        Pieza destino = Tablero.getPieza(nuevaFila, nuevaColumna);
 
         if (destino != null && destino.getColor() == this.color) {
             return false;
         }
         return true;
     }
-
+    @Override
+    public Pieza copiar() {
+        return new Torre(getFila(), getColumna(), getColor());
+    }
     @Override
     public String toString() {
         return color == Color.BLANCO ? "♖" : "♜";
