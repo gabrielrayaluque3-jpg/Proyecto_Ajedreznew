@@ -1,5 +1,7 @@
 package model;
 
+import utils.Utils;
+
 public class Alfil extends Pieza {
     final int puntos = 3;
 
@@ -9,23 +11,10 @@ public class Alfil extends Pieza {
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
-        int distFila = nuevaFila - getFila();
-        int distCol = nuevaColumna - getColumna();
-        return distFila == distCol;
-    }
-
-    public int getPuntos() {
-        return 3;
-    }
-
-    @Override
-    public Pieza copiar() {
-        return null;
-    @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna) {
-        int distFila = nuevaFila - getFila();
-        int distCol = nuevaColumna - getColumna();
-        return distFila == distCol;
+        if(Utils.esDiagonal(getFila(),getColumna(),nuevaFila,nuevaColumna)){
+            return true;
+        }
+        return false;
     }
 
     public int getPuntos() {
