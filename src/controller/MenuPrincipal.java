@@ -6,9 +6,7 @@ public class MenuPrincipal {
     private Scanner scanner = new Scanner(System.in);
 
     public void mostrarEstadoPartida(String tableroDibujado, String turno, int puntosB, int puntosN, String piezasMuertas, boolean jaque) {
-        System.out.println("\n========================================");
-        System.out.println("            ESTADO DE LA PARTIDA        ");
-        System.out.println("========================================");
+        System.out.println("--------ESTADO DE LA PARTIDA--------");
         System.out.println("Turno actual: " + turno.toUpperCase());
         if (jaque) System.out.println("¡ATENCIÓN! El rey está en JAQUE ");
 
