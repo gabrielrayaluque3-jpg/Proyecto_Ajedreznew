@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class Rey extends Pieza {
 
-    private static final long serialVersionUID = 1L;
     private static final int PUNTOS = 100; //
 
     public Rey(int fila, int columna, Color color) {
@@ -50,23 +49,26 @@ public class Rey extends Pieza {
         return puede;
     }
 
-
-    public void mover(int nuevaFila, int nuevaColumna, Tablero tablero) {
-
-        if (!puedeMover(nuevaFila, nuevaColumna, tablero)) {
-            throw new IllegalArgumentException("Movimiento no permitido para el Rey.");
+    @Override
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
+        if (!sePuedeMover(nuevaFila, nuevaColumna)) {
+            return false;
         }
-
 
         Pieza piezaDestino = tablero.getPieza(nuevaFila, nuevaColumna);
         if (piezaDestino instanceof Rey) {
-            throw new IllegalArgumentException("No se puede capturar al Rey.");
+            return false;
         }
-
 
         this.setFila(nuevaFila);
         this.setColumna(nuevaColumna);
+
+        return true;
     }
+
+
+
+
 
 
     public Pieza copiar() {

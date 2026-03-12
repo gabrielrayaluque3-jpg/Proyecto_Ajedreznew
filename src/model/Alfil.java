@@ -8,7 +8,7 @@ public class Alfil extends Pieza {
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
         int distFila = nuevaFila - getFila();
         int distCol = nuevaColumna - getColumna();
         return distFila == distCol;
@@ -16,6 +16,11 @@ public class Alfil extends Pieza {
 
     public int getPuntos() {
         return 3;
+    }
+
+    @Override
+    public Pieza copiar() {
+        return null;
     }
 
     @Override
