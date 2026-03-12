@@ -1,5 +1,7 @@
 package model;
 
+import utils.Utils;
+
 public class Alfil extends Pieza {
     final int puntos = 3;
 
@@ -18,10 +20,6 @@ public class Alfil extends Pieza {
     public int getPuntos() {
         return 3;
     }
-
-    @Override
-    public Pieza copiar() {
-        return null;
 
     @Override
     public Pieza copiar() {
