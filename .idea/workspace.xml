@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He cambiado el método del moviento de Caballo">
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="Hemos modificado un metodo de la superclase, y he arreglado los cambios en las clases especificas." />
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He cambiado el método del movimiento.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Alfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Alfil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Caballo.java" afterDir="false" />
