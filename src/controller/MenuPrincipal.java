@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
-public class MenuPrincipal {
+public class MenuPrincipal  {
     private Scanner scanner = new Scanner(System.in);
 
     public void mostrarEstadoPartida(String tableroDibujado, String turno, int puntosB, int puntosN, String piezasMuertas, boolean jaque) {
