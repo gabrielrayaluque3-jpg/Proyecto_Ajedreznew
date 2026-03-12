@@ -187,7 +187,7 @@ public class Tablero {
             throw new IllegalArgumentException("No se puede capturar al Rey.");
         }else {
             capturarPieza(piezaEnDestino);
-            pieza.movimiento(nuevaFila, nuevaColumna);
+            pieza.movimiento(nuevaFila, nuevaColumna, this);
         }
 
         getPuntuacionBlanca();

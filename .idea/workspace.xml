@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He cambiado el método del moviento de Caballo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Alfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Alfil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Caballo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Peon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Peon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pieza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pieza.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reina.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Rey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Rey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Torre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tablero.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +35,22 @@
       </list>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git",
-    "accountId": "2f16a05c-4dd0-49d8-9d4a-bd54afaac185"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git&quot;,
+    &quot;accountId&quot;: &quot;2f16a05c-4dd0-49d8-9d4a-bd54afaac185&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;gabrielrayaluque3-jpg&quot;,
+    &quot;repository&quot;: &quot;Proyecto_Ajedreznew&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
@@ -63,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bugfix/metodo-movimiento",
+    "git-widget-placeholder": "bugfix/metodo-claseTablero",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -85,8 +89,16 @@
       <list>
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
