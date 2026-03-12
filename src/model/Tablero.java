@@ -203,7 +203,32 @@ public class Tablero {
         piezasEliminadas.add(capturada);
     }
     public boolean jaque(){
-        //falta implementar
+        Rey reyNegro=null;
+        Rey reyBlanco=null;
+
+        for (Pieza p : piezasBlancas) {
+            if (p instanceof Rey) {
+                reyBlanco = (Rey) p;
+            }
+        }
+
+        for (Pieza p : piezasNegras) {
+            if (p instanceof Rey) {
+                reyNegro = (Rey) p;
+            }
+        }
+
+        for (Pieza p : piezasNegras) {
+            if (p.puedeAtacar(reyBlanco)) {
+                return true;
+            }
+        }
+
+        for (Pieza p : piezasBlancas) {
+            if (p.puedeAtacar(reyNegro)) {
+                return true;
+            }
+        }
         return false;
     }
 }
