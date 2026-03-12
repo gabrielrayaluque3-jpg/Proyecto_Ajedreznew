@@ -12,10 +12,13 @@ public class Utils {
     }
 
     public static boolean esDiagonal(int f1, int c1, int f2, int c2) {
-        return calcularDireccion(f1, f2) == calcularDireccion(c1, c2);
+        return Math.abs(f1 - f2) == Math.abs(c1 - c2) && (f1 != f2) ;
     }
 
     public static boolean esRectilineo(int f1, int c1, int f2, int c2) {
-        return calcularDireccion(f1, f2) == calcularDireccion(c1, c2);
+        int dirFila = calcularDireccion(f1, f2);
+        int dirColumna = calcularDireccion(c1, c2);
+
+        return (dirFila == 0 && dirColumna == 1) || (dirFila == 1 && dirColumna == 0);
     }
 }

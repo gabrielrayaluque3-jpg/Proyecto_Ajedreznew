@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He cambiado el método del moviento de Caballo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tablero.java" afterDir="false" />
-    </list>
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="he arreglado errores de la clase alfil" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="bugfix/errores-claseAlfil" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bugfix/metodo-claseTablero",
+    "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -116,11 +113,20 @@
       <option name="project" value="LOCAL" />
       <updated>1773228064665</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="he arreglado errores de la clase alfil">
+      <option name="closed" value="true" />
+      <created>1773310753276</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773310753276</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
-    <option name="LAST_COMMIT_MESSAGE" value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
+    <MESSAGE value="he arreglado errores de la clase alfil" />
+    <option name="LAST_COMMIT_MESSAGE" value="he arreglado errores de la clase alfil" />
   </component>
 </project>
