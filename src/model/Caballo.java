@@ -20,7 +20,7 @@ public class Caballo extends Pieza {
 
     @Override
     public Pieza copiar() {
-        return null;
+        return new Caballo(getFila(), getColumna(), getColor());
     }
 
 
