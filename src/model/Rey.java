@@ -7,70 +7,30 @@ import java.util.Objects;
 
 public class Rey extends Pieza {
 
-    private static final int PUNTOS = 100; //
-
     public Rey(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
 
-
     public int getPuntos() {
-        return PUNTOS;
+        return 100;
     }
 
-    public boolean sePuedeMover(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) {
+        int nuevaPosicion= Utils.calcularDireccion(nuevaFila, nuevaColumna);
 
-        Utils.validarPosicion(nuevaFila,nuevaColumna);
-
-        int difFila = Math.abs(this.getFila() - nuevaFila);
-        int difColumna = Math.abs(this.getColumna() - nuevaColumna);
-
-        if (difFila > 1 || difColumna > 1 || (difFila == 0 && difColumna == 0)) {
-            return false;
+        if(!(nuevaPosicion<=1)){
+            throw new IllegalArgumentException("La pieza Rey no puede moverse más de una casilla");
+        }else{
+            this.setFila(nuevaFila);
+            this.setColumna(nuevaColumna);
+            return true;
         }
-
-
-        Pieza piezaDestino = tablero.getPieza(nuevaFila, nuevaColumna);
-        if (piezaDestino != null && piezaDestino.getColor() == this.getColor()) {
-            return false;
-        }
-
-        return true;
     }
 
+    //falta jaque
 
-    public boolean puedeAtacar(Pieza otraPieza) {
-        boolean puede=false;
-        int difFila = Math.abs(this.getFila() - otraPieza.getFila());
-        int difColumna = Math.abs(this.getColumna() - otraPieza.getColumna());
-        if (difFila <= 1 && difColumna <= 1 && (difFila != 0 || difColumna != 0)){
-            puede = true;
-        }
-        return puede;
-    }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
-        if (!sePuedeMover(nuevaFila, nuevaColumna)) {
-            return false;
-        }
-
-        Pieza piezaDestino = tablero.getPieza(nuevaFila, nuevaColumna);
-        if (piezaDestino instanceof Rey) {
-            return false;
-        }
-
-        this.setFila(nuevaFila);
-        this.setColumna(nuevaColumna);
-
-        return true;
-    }
-
-
-
-
-
-
     public Pieza copiar() {
 
         return new Rey(this.getFila(), this.getColumna(), this.getColor());
@@ -78,7 +38,11 @@ public class Rey extends Pieza {
 
     @Override
     public String toString() {
-        return (this.getColor() == Color.BLANCO) ? "♔" : "♚";
+        if (getColor() == Color.BLANCO) {
+            return "♚";
+        } else {
+            return "♔";
+        }
     }
 
     @Override
