@@ -19,6 +19,10 @@ public class Alfil extends Pieza {
     }
 
     @Override
+    public Pieza copiar() {
+        return new Alfil(getFila(), getColumna(), getColor());
+    }
+    @Override
     public String toString() {
         if (getColor() == Color.BLANCO) {
             return "♝";
