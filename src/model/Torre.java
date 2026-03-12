@@ -73,18 +73,7 @@ public class Torre extends Pieza {
         if (Utils.esRectilineo(getFila(),getColumna(), nuevaFila, nuevaColumna)){
             return true;
         }
-
-
-        if (Tablero.hayPiezasEntre(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
-            return false;
-        }
-
-        Pieza destino = Tablero.getPieza(nuevaFila, nuevaColumna);
-
-        if (destino != null && destino.getColor() == this.color) {
-            return false;
-        }
-        return true;
+        return false;
     }
     @Override
     public Pieza copiar() {
