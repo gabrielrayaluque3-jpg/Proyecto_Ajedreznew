@@ -45,31 +45,41 @@ public class Tablero {
         return this.puntuacionNegra = sumaVivas - sumaEliminadas;
     }
 
+    private int letraAColumna(char letra) {
+        return Character.toUpperCase(letra) - 'A' + 1;
+    }
+
+    private char columnaALetra(int col) {
+        return (char) ('a' + col - 1);
+    }
+
     public String printTablero() {
         String casillaBlanca = "░";
         String casillaNegra = "▓";
         String resultado = "";
 
         for (int i = 0; i < 8; i++) {
-            fila[i] = i;
-            columna[i] = i;
+            fila[i] = i + 1;
+            columna[i] = i + 1;
         }
 
-        for (int f = 0; f < fila.length; f++) {
-            for (int c = 0; c < columna.length; c++) {
+        for (int f = 7; f >= 0; f--) {
+            resultado = resultado + fila[f] + " ";
+            for (int c = 0; c < 8; c++) {
                 Pieza p = getPieza(fila[f], columna[c]);
                 if (p != null) {
                     resultado = resultado + p;
                 } else {
-                    if ((fila[f] + columna[c]) % 2 == 1) {
-                        resultado = resultado + casillaBlanca;
-                    } else {
+                    if ((fila[f] + columna[c]) % 2 == 0) {
                         resultado = resultado + casillaNegra;
+                    } else {
+                        resultado = resultado + casillaBlanca;
                     }
                 }
             }
             resultado = resultado + "\n";
         }
+        resultado = resultado + "  abcdefgh";
         return resultado;
     }
 
@@ -92,20 +102,20 @@ public class Tablero {
 
     public void reiniciarTablero() {
         vaciarTablero();
-        addPieza("Reina", 0, 3, Color.BLANCO);
-        addPieza("Reina", 7, 3, Color.NEGRO);
-        addPieza("Torre", 0, 0, Color.BLANCO);
-        addPieza("Torre", 0, 7, Color.BLANCO);
-        addPieza("Torre", 7, 0, Color.NEGRO);
-        addPieza("Torre", 7, 7, Color.NEGRO);
-        addPieza("Alfil", 0, 2, Color.BLANCO);
-        addPieza("Alfil", 0, 5, Color.BLANCO);
-        addPieza("Alfil", 7, 2, Color.NEGRO);
-        addPieza("Alfil", 7, 5, Color.NEGRO);
-        addPieza("Caballo", 0, 1, Color.BLANCO);
-        addPieza("Caballo", 0, 6, Color.BLANCO);
-        addPieza("Caballo", 7, 1, Color.NEGRO);
-        addPieza("Caballo", 7, 6, Color.NEGRO);
+        addPieza("Reina", 1, 4, Color.BLANCO);
+        addPieza("Reina", 8, 5, Color.NEGRO);
+        addPieza("Torre", 1, 1, Color.BLANCO);
+        addPieza("Torre", 1, 8, Color.BLANCO);
+        addPieza("Torre", 8, 1, Color.NEGRO);
+        addPieza("Torre", 8, 8, Color.NEGRO);
+        addPieza("Alfil", 1, 3, Color.BLANCO);
+        addPieza("Alfil", 1, 6, Color.BLANCO);
+        addPieza("Alfil", 8, 3, Color.NEGRO);
+        addPieza("Alfil", 8, 6, Color.NEGRO);
+        addPieza("Caballo", 1, 2, Color.BLANCO);
+        addPieza("Caballo", 1, 7, Color.BLANCO);
+        addPieza("Caballo", 8, 2, Color.NEGRO);
+        addPieza("Caballo", 7, 7, Color.NEGRO);
         for (int i = 0; i < 8; i++) {
             addPieza("Peon", 1, i, Color.BLANCO);
             addPieza("Peon", 6, i, Color.NEGRO);
@@ -175,19 +185,24 @@ public class Tablero {
         return false;
     }
 
-    public void moverPieza(Pieza pieza, int nuevaFila, int nuevaColumna) {
+    public void moverPieza(String origen, String destino) {
+        int filaOrigen = Character.getNumericValue(origen.charAt(0));
+        int colOrigen = letraAColumna(origen.charAt(1));
 
-        Pieza piezaEnDestino = getPieza(nuevaFila, nuevaColumna);
-        if (!pieza.sePuedeMover(piezaEnDestino)) {
-            throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + nuevaFila + "," + nuevaColumna + ").");
+        int filaDestino = Character.getNumericValue(destino.charAt(0));
+        int colDestino = letraAColumna(destino.charAt(1));
+        Pieza pDestino = getPieza(filaDestino, colDestino);
+        Pieza p = getPieza(filaOrigen, colOrigen);
+        if (!p.sePuedeMover(pDestino)) {
+            throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + filaDestino + "," + colDestino + ").");
         }
-        else if (!pieza.puedeAtacar(piezaEnDestino)) {
-            throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + nuevaFila + "," + nuevaColumna + ").");
-        }else if (pieza instanceof Rey && getPieza(nuevaFila, nuevaColumna) instanceof Rey) {
+        else if (!p.puedeAtacar(pDestino)) {
+            throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + filaDestino + "," + colDestino + ").");
+        }else if (p instanceof Rey && pDestino instanceof Rey) {
             throw new IllegalArgumentException("No se puede capturar al Rey.");
         }else {
-            capturarPieza(piezaEnDestino);
-            pieza.movimiento(nuevaFila, nuevaColumna, this);
+            capturarPieza(pDestino);
+            p.movimiento(filaDestino, colDestino, this);
         }
 
         getPuntuacionBlanca();
