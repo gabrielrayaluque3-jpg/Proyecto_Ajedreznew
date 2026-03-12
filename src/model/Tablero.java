@@ -79,7 +79,7 @@ public class Tablero {
             }
             resultado = resultado + "\n";
         }
-        resultado = resultado + "  a b c d e f g h";
+        resultado = resultado + "  abcdefgh";
         return resultado;
     }
 
@@ -102,20 +102,20 @@ public class Tablero {
 
     public void reiniciarTablero() {
         vaciarTablero();
-        addPieza("Reina", 0, 3, Color.BLANCO);
-        addPieza("Reina", 7, 3, Color.NEGRO);
-        addPieza("Torre", 0, 0, Color.BLANCO);
-        addPieza("Torre", 0, 7, Color.BLANCO);
-        addPieza("Torre", 7, 0, Color.NEGRO);
-        addPieza("Torre", 7, 7, Color.NEGRO);
-        addPieza("Alfil", 0, 2, Color.BLANCO);
-        addPieza("Alfil", 0, 5, Color.BLANCO);
-        addPieza("Alfil", 7, 2, Color.NEGRO);
-        addPieza("Alfil", 7, 5, Color.NEGRO);
-        addPieza("Caballo", 0, 1, Color.BLANCO);
-        addPieza("Caballo", 0, 6, Color.BLANCO);
-        addPieza("Caballo", 7, 1, Color.NEGRO);
-        addPieza("Caballo", 7, 6, Color.NEGRO);
+        addPieza("Reina", 1, 4, Color.BLANCO);
+        addPieza("Reina", 8, 5, Color.NEGRO);
+        addPieza("Torre", 1, 1, Color.BLANCO);
+        addPieza("Torre", 1, 8, Color.BLANCO);
+        addPieza("Torre", 8, 1, Color.NEGRO);
+        addPieza("Torre", 8, 8, Color.NEGRO);
+        addPieza("Alfil", 1, 3, Color.BLANCO);
+        addPieza("Alfil", 1, 6, Color.BLANCO);
+        addPieza("Alfil", 8, 3, Color.NEGRO);
+        addPieza("Alfil", 8, 6, Color.NEGRO);
+        addPieza("Caballo", 1, 2, Color.BLANCO);
+        addPieza("Caballo", 1, 7, Color.BLANCO);
+        addPieza("Caballo", 8, 2, Color.NEGRO);
+        addPieza("Caballo", 7, 7, Color.NEGRO);
         for (int i = 0; i < 8; i++) {
             addPieza("Peon", 1, i, Color.BLANCO);
             addPieza("Peon", 6, i, Color.NEGRO);
