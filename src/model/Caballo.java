@@ -8,7 +8,7 @@ public class Caballo extends Pieza {
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
         int distFila = nuevaFila - getFila();
         int distCol = nuevaColumna - getColumna();
         return (distFila == 2 && distCol == 1) || (distFila == 1 && distCol == 2);
@@ -20,7 +20,7 @@ public class Caballo extends Pieza {
 
     @Override
     public Pieza copiar() {
-        return null;
+        return new Caballo(getFila(), getColumna(), getColor());
     }
 
 

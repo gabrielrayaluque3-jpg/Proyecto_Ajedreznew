@@ -7,7 +7,7 @@ public class Reina extends Pieza {
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
         int filaOrigen = getFila();
         int colOrigen = getColumna();
 
