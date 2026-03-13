@@ -3,7 +3,7 @@ package model;
 
 import utils.Utils;
 
-public class Torre extends Pieza {
+public class  Torre extends Pieza {
 
     private int fila;
     private int columna;

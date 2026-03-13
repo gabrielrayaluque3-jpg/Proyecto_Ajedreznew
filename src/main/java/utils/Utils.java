@@ -1,6 +1,6 @@
 package utils;
 
-public class Utils {
+public class  Utils {
     public static void validarPosicion (int fila, int columna){
         if (fila < 1 || fila > 8 || columna < 1 || columna > 8) {
             throw new IllegalArgumentException("La posición (" + fila + "," + columna + ") está fuera del rango permitido (1-8).");

@@ -6,7 +6,7 @@ import model.Tablero;
 
 public class TableroController {
     private Tablero tablero;
-    private Color turnoActual;
+    private Color turnoActual ;
     private Pieza piezaSeleccionada;
 
     public TableroController() {

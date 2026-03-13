@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static utils.Utils.calcularDireccion;
 
-public class Tablero implements Serializable {
+public class  Tablero implements Serializable {
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();

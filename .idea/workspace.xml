@@ -1,158 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He borrado los readme.md que habia en cada clase, y he puesto uno general con el contenido del proyecto.">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/TableroController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Alfil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Caballo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Peon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pieza.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PiezaSaltadora.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Rey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MenuPrincipal.java" beforeDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;tprxd07&quot;
-  }
-}</component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
-  </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git&quot;,
-    &quot;accountId&quot;: &quot;2f16a05c-4dd0-49d8-9d4a-bd54afaac185&quot;
-  },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
-    },
-    &quot;owner&quot;: &quot;gabrielrayaluque3-jpg&quot;,
-    &quot;repository&quot;: &quot;Proyecto_Ajedreznew&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="3AhzEsuOqBVDGKQ3EmOxqAZCbbg" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bugfix/cambio-maven",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
-  }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Gabriel\Desktop\DAM\1º Trimestre\Programación\Proyecto_Ajedreznew" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.Test" />
-      <module name="EjemploSerializacionXMLL" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Proyecto_Ajedreznew" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Test" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="" />
-      <created>1773059485145</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1773059485145</updated>
-    </task>
-    <task id="LOCAL-00001" summary="he borrado ClaseTorre que se habia duplicado en otro paquete">
-      <option name="closed" value="true" />
-      <created>1773228064665</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1773228064665</updated>
-    </task>
-    <task id="LOCAL-00002" summary="he arreglado errores de la clase alfil">
-      <option name="closed" value="true" />
-      <created>1773310753276</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1773310753276</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
-    <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
-    <MESSAGE value="he arreglado errores de la clase alfil" />
-    <option name="LAST_COMMIT_MESSAGE" value="he arreglado errores de la clase alfil" />
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Proyecto_Ajedreznew" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
 </project>

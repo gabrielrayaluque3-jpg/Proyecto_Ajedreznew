@@ -1,6 +1,6 @@
 package model;
 
-public class Caballo extends Pieza {
+public class  Caballo extends Pieza {
     final int puntos = 3;
 
     public Caballo(int fila, int columna, Color color) {
