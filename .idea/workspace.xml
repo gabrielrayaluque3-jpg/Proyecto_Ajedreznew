@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He creado el metodo de jaque">
-      <change afterPath="$PROJECT_DIR$/src/controller/TableroController.java" afterDir="false" />
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He borrado los readme.md que habia en cada clase, y he puesto uno general con el contenido del proyecto.">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/TableroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Alfil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Caballo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Peon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pieza.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PiezaSaltadora.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Rey.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MenuPrincipal.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/metodo-jaque" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,15 +88,22 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "bugfix/cambio-maven",
     "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font"
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Gabriel\Desktop\DAM\1º Trimestre\Programación\Proyecto_Ajedreznew" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.Test" />
-      <module name="Proyecto_Ajedreznew" />
+      <module name="EjemploSerializacionXMLL" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="model.*" />
@@ -102,13 +122,6 @@
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

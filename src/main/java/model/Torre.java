@@ -10,10 +10,6 @@ public class Torre extends Pieza {
     private Color color;
 
     public Torre(int fila, int columna, Color color) {
-        if (fila < 0 || fila > 7 || columna < 0 || columna > 7) {
-            throw new IllegalArgumentException("Posición fuera del tablero");
-        }
-
         this.fila = fila;
         this.columna = columna;
         this.color = color;
@@ -81,6 +77,10 @@ public class Torre extends Pieza {
     }
     @Override
     public String toString() {
-        return color == Color.BLANCO ? "♖" : "♜";
+        if (getColor() == Color.BLANCO) {
+            return "♜";
+        } else {
+            return "♖";
+        }
     }
 }
