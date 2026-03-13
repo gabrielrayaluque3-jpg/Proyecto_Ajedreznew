@@ -48,6 +48,10 @@ public class Peon extends Pieza {
 
     @Override
     public String toString() {
-        return (getColor() == Color.BLANCO) ? "♙" : "♟";
+        if (getColor() == Color.BLANCO) {
+            return "♟";
+        } else {
+            return "♙";
+        }
     }
 }

@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static utils.Utils.calcularDireccion;
 
-public class Tablero {
+public class Tablero implements Serializable {
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
@@ -79,7 +80,7 @@ public class Tablero {
             }
             resultado = resultado + "\n";
         }
-        resultado = resultado + "  abcdefgh";
+        resultado = resultado + "  a b c d e f g h";
         return resultado;
     }
 
@@ -102,6 +103,8 @@ public class Tablero {
 
     public void reiniciarTablero() {
         vaciarTablero();
+        addPieza("Rey", 1, 5, Color.BLANCO);
+        addPieza("Rey", 8, 4, Color.NEGRO);
         addPieza("Reina", 1, 4, Color.BLANCO);
         addPieza("Reina", 8, 5, Color.NEGRO);
         addPieza("Torre", 1, 1, Color.BLANCO);
@@ -115,10 +118,10 @@ public class Tablero {
         addPieza("Caballo", 1, 2, Color.BLANCO);
         addPieza("Caballo", 1, 7, Color.BLANCO);
         addPieza("Caballo", 8, 2, Color.NEGRO);
-        addPieza("Caballo", 7, 7, Color.NEGRO);
-        for (int i = 0; i < 8; i++) {
-            addPieza("Peon", 1, i, Color.BLANCO);
-            addPieza("Peon", 6, i, Color.NEGRO);
+        addPieza("Caballo", 8, 7, Color.NEGRO);
+        for (int i = 1; i < 9; i++) {
+            addPieza("Peon", 2, i, Color.BLANCO);
+            addPieza("Peon", 7, i, Color.NEGRO);
         }
     }
 
@@ -148,6 +151,9 @@ public class Tablero {
                 break;
             case "Peon":
                 pieza = new Peon(fila, columna, color);
+                break;
+            case "Rey":
+                pieza = new Rey(fila, columna, color);
                 break;
             default:
                 throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
@@ -245,6 +251,11 @@ public class Tablero {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Piezas blancas: " + piezasBlancas + "\nPiezas negras: " + piezasNegras + "\nPiezas eliminadas: " + piezasEliminadas + "\nPuntuación blanca: " + puntuacionBlanca + "\nPuntuación negra: " + puntuacionNegra;
     }
 }
 
