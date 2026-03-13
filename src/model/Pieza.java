@@ -2,9 +2,10 @@ package model;
 
 import utils.Utils;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Pieza {
+public abstract class Pieza implements Serializable {
 
     //las posiciones son del 0 al 7
     protected int fila;
