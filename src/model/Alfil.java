@@ -3,7 +3,6 @@ package model;
 import utils.Utils;
 
 public class Alfil extends Pieza {
-    final int puntos = 3;
 
     public Alfil(int fila, int columna, Color color) {
         super(fila, columna, color);
