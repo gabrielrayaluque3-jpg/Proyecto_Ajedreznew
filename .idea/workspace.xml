@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="bugfix: Tablero del 1 al 8, columnas de la a a la h, e imprimir las piezas en cada casilla">
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="he arreglado errores de la clase alfil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Peon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Peon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Reina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Rey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Rey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tablero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Torre.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="bugfix/arreglo-claseTorre" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,10 +29,17 @@
     &quot;assignee&quot;: &quot;tprxd07&quot;
   }
 }</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git&quot;,
-    &quot;accountId&quot;: &quot;f39306d2-1b24-4434-b78a-649ad9a0424d&quot;
+    &quot;accountId&quot;: &quot;2f16a05c-4dd0-49d8-9d4a-bd54afaac185&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -57,18 +61,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bugfix/repararMovimientos",
-    "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.Test" />
@@ -85,8 +88,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
@@ -116,33 +117,20 @@
       <option name="project" value="LOCAL" />
       <updated>1773228064665</updated>
     </task>
-    <task id="LOCAL-00002" summary="bugfix: Arregaldo movimientos y columnas. falta que las piezas se impriman correctamente">
+    <task id="LOCAL-00002" summary="he arreglado errores de la clase alfil">
       <option name="closed" value="true" />
-      <created>1773316716564</created>
+      <created>1773310753276</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1773316716564</updated>
+      <updated>1773310753276</updated>
     </task>
-    <task id="LOCAL-00003" summary="bugfix: Tablero del 1 al 8, columnas de la a a la h, e imprimir las piezas en cada casilla">
-      <option name="closed" value="true" />
-      <created>1773320393988</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1773320393988</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
-    <MESSAGE value="bugfix: Arregaldo movimientos y columnas. falta que las piezas se impriman correctamente" />
-    <MESSAGE value="bugfix: Tablero del 1 al 8, columnas de la a a la h, e imprimir las piezas en cada casilla" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix: Tablero del 1 al 8, columnas de la a a la h, e imprimir las piezas en cada casilla" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="he arreglado errores de la clase alfil" />
+    <option name="LAST_COMMIT_MESSAGE" value="he arreglado errores de la clase alfil" />
   </component>
 </project>
