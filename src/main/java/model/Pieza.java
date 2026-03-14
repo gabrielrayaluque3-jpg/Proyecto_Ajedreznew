@@ -5,7 +5,7 @@ import utils.Utils;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Pieza implements Serializable {
+public abstract class  Pieza implements Serializable {
 
     //las posiciones son del 0 al 7
     protected int fila;

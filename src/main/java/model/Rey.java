@@ -5,7 +5,7 @@ import utils.Utils;
 import java.util.Objects;
 
 
-public class Rey extends Pieza {
+public class  Rey extends Pieza {
 
     public Rey(int fila, int columna, Color color) {
         super(fila, columna, color);

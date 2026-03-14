@@ -3,7 +3,7 @@ package model;
 
 import utils.Utils;
 
-public class Torre extends Pieza {
+public class  Torre extends Pieza {
     public Torre(int fila, int columna, Color color) {
         super(fila, columna, color);
     }

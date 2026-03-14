@@ -4,7 +4,7 @@ import model.Color;
 import model.Pieza;
 import model.Tablero;
 
-public class TableroController {
+public class  TableroController {
     private Tablero tablero;
     private Color turnoActual;
     private Pieza piezaSeleccionada;
