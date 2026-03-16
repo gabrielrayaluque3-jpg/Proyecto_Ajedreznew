@@ -1,6 +1,6 @@
 package model;
 
-public class Peon extends Pieza {
+public class  Peon extends Pieza {
 
     public Peon(int fila, int columna, Color color) {
         super(fila, columna, color);
