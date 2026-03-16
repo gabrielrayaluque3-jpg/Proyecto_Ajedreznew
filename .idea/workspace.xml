@@ -5,22 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="bugfix: arreglos temporales al movimiento">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/MovimientoInvalido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Caballo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Pieza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Pieza.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Rey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Rey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PiezaSaltadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PiezaSaltadora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Tablero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Alfil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Alfil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Color.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Caballo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Caballo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/model/Pieza.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Pieza.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/PiezaSaltadora.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/PiezaSaltadora.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/model/Rey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Rey.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/model/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Tablero.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/model/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Torre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Torre.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/Utils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +105,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#86 on bugfix/moverPieza",
+    "git-widget-placeholder": "bugfix/moverPieza",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -185,6 +182,17 @@
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />

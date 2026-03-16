@@ -8,8 +8,8 @@ import java.util.Objects;
 public abstract class  Pieza implements Serializable {
 
     //las posiciones son del 0 al 7
-    protected int fila;
-    protected int columna;  //las posiciones son del 0 al 7, pero en el tablero serian A-H
+    protected int fila;      // en el tablero, son las filas de 1-8
+    protected int columna;  //en el tablero serian A-H
     protected Color color;  //es necesario el enum Color para saber si es blanca o negra
     //los puntos se añade como un final int en cada clase (final para que no cambie)
 

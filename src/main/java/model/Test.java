@@ -6,22 +6,36 @@ public class  Test {
     public static void main(String[] args) {
         Tablero tablero = new Tablero();
         tablero.reiniciarTablero();
-        System.out.println(tablero.printTablero());
+        System.out.println(tablero);
         System.out.println("Reiniciando tablero...");
         tablero.reiniciarTablero();
         System.out.println("Tablero reiniciado:");
-        System.out.println(tablero.printTablero());
         System.out.println(tablero);
-        tablero.moverPieza("1d","2c");
-        System.out.println(tablero.printTablero());
-        tablero.vaciarTablero();
-        System.out.println(tablero.printTablero());
-        tablero.addPieza(new Rey(1, 1, Color.BLANCO));
-        System.out.println(tablero.printTablero());
-        tablero.moverPieza("1a","2a");
-        System.out.println(tablero.printTablero());
-        tablero.moverPieza("2a","4a");
-        System.out.println(tablero.printTablero());
+        System.out.println(tablero.estadoTablero());
+        try {
+            tablero.moverPieza("1b","3a");
+        } catch (MovimientoInvalido e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(tablero);
+        try {
+            tablero.moverPieza("3a","5b");
+        } catch (MovimientoInvalido e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(tablero);
+        try {
+            tablero.moverPieza("5b","3c");
+        } catch (MovimientoInvalido e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(tablero);
+        try {
+            tablero.moverPieza("3c","1d");
+        } catch (MovimientoInvalido e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(tablero);
     }
 }
 
