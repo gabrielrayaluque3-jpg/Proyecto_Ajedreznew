@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static utils.Utils.calcularDireccion;
 
-public class  Tablero implements Serializable {
+public class Tablero implements Serializable {
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
@@ -16,34 +16,20 @@ public class  Tablero implements Serializable {
     public static final int[] fila = new int[8];
     public static final int[] columna = new int[8];
 
-    public int getPuntuacionBlanca(){
+    public int getPuntuacionBlanca() {
         int sumaVivas = 0;
         for (Pieza p : piezasBlancas) {
             sumaVivas += p.getPuntos();
         }
-
-        int sumaEliminadas = 0;
-        for (Pieza p : piezasEliminadas) {
-            if (p.getColor() == Color.BLANCO) {
-                sumaEliminadas += p.getPuntos();
-            }
-        }
-        return this.puntuacionBlanca = sumaVivas - sumaEliminadas;
+        return this.puntuacionBlanca = sumaVivas;
     }
 
-    public int getPuntuacionNegra(){
+    public int getPuntuacionNegra() {
         int sumaVivas = 0;
         for (Pieza p : piezasNegras) {
             sumaVivas += p.getPuntos();
         }
-
-        int sumaEliminadas = 0;
-        for (Pieza p : piezasEliminadas) {
-            if (p.getColor() == Color.NEGRO) {
-                sumaEliminadas += p.getPuntos();
-            }
-        }
-        return this.puntuacionNegra = sumaVivas - sumaEliminadas;
+        return this.puntuacionNegra = sumaVivas;
     }
 
     private int letraAColumna(char letra) {
@@ -90,17 +76,6 @@ public class  Tablero implements Serializable {
         piezasEliminadas.clear();
     }
 
-    public Tablero crearCopiaTablero() {
-        Tablero copia = new Tablero();
-        for (Pieza pieza : piezasBlancas) {
-            copia.addPieza(pieza);
-        }
-        for (Pieza pieza : piezasNegras) {
-            copia.addPieza(pieza);
-        }
-        return copia;
-    }
-
     public void reiniciarTablero() {
         vaciarTablero();
         addPieza("Rey", 1, 5, Color.BLANCO);
@@ -137,26 +112,13 @@ public class  Tablero implements Serializable {
     public Pieza addPieza(String nombre, int fila, int columna, Color color) {
         Pieza pieza = null;
         switch (nombre) {
-            case "Reina":
-                pieza = new Reina(fila, columna, color);
-                break;
-            case "Caballo":
-                pieza = new Caballo(fila, columna, color);
-                break;
-            case "Alfil":
-                pieza = new Alfil(fila, columna, color);
-                break;
-            case "Torre":
-                pieza = new Torre(fila, columna, color);
-                break;
-            case "Peon":
-                pieza = new Peon(fila, columna, color);
-                break;
-            case "Rey":
-                pieza = new Rey(fila, columna, color);
-                break;
-            default:
-                throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
+            case "Reina": pieza = new Reina(fila, columna, color); break;
+            case "Caballo": pieza = new Caballo(fila, columna, color); break;
+            case "Alfil": pieza = new Alfil(fila, columna, color); break;
+            case "Torre": pieza = new Torre(fila, columna, color); break;
+            case "Peon": pieza = new Peon(fila, columna, color); break;
+            case "Rey": pieza = new Rey(fila, columna, color); break;
+            default: throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
         }
         return addPieza(pieza);
     }
@@ -175,42 +137,35 @@ public class  Tablero implements Serializable {
         return null;
     }
 
-    public boolean hayPiezasEntre(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
-        int filaIncremento = calcularDireccion(filaOrigen, filaDestino);
-        int colIncremento = calcularDireccion(colOrigen, colDestino);
-        int filaActual = filaOrigen + filaIncremento;
-        int colActual = colOrigen + colIncremento;
-
-        while (filaActual != filaDestino && colActual != colDestino) {
-            if (getPieza(filaActual, colActual) != null) {
-                return true;
-            }
-            filaActual += filaIncremento;
-            colActual += colIncremento;
-        }
-        return false;
-    }
-
-    public void moverPieza(String origen, String destino) {
-        int filaOrigen = Character.getNumericValue(origen.charAt(0));
-        int colOrigen = letraAColumna(origen.charAt(1));
-
-        int filaDestino = Character.getNumericValue(destino.charAt(0));
-        int colDestino = letraAColumna(destino.charAt(1));
-        Pieza pDestino = getPieza(filaDestino, colDestino);
+    // NUEVO MÉTODO PARA EL CONTROLADOR (Recibe INT)
+    public void moverPieza(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
         Pieza p = getPieza(filaOrigen, colOrigen);
-        if (!p.sePuedeMover(pDestino)) {
-            throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + filaDestino + "," + colDestino + ").");
-        }
-        else if (!p.puedeAtacar(pDestino)) {
-            throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + filaDestino + "," + colDestino + ").");
-        }else if (p instanceof Rey && pDestino instanceof Rey) {
-            throw new IllegalArgumentException("No se puede capturar al Rey.");
-        }else {
-            capturarPieza(pDestino);
-            p.movimiento(filaDestino, colDestino, this);
+        Pieza pDestino = getPieza(filaDestino, colDestino);
+
+        if (p == null) {
+            throw new IllegalArgumentException("No hay ninguna pieza en la posición seleccionada.");
         }
 
+        // Validación de movimiento
+        if (!p.sePuedeMover(pDestino)) {
+            throw new IllegalArgumentException("Esa pieza no puede moverse así.");
+        }
+
+        // Gestión de capturas
+        if (pDestino != null) {
+            if (pDestino.getColor() == p.getColor()) {
+                throw new IllegalArgumentException("No puedes capturar tus propias piezas.");
+            }
+            if (pDestino instanceof Rey) {
+                throw new IllegalArgumentException("No se puede capturar al Rey.");
+            }
+            capturarPieza(pDestino);
+        }
+
+        // Realizar el movimiento físico
+        p.movimiento(filaDestino, colDestino, this);
+
+        // Actualizar puntuaciones
         getPuntuacionBlanca();
         getPuntuacionNegra();
     }
@@ -223,31 +178,22 @@ public class  Tablero implements Serializable {
         }
         piezasEliminadas.add(capturada);
     }
-    public boolean jaque(){
-        Rey reyNegro=null;
-        Rey reyBlanco=null;
 
-        for (Pieza p : piezasBlancas) {
-            if (p instanceof Rey) {
-                reyBlanco = (Rey) p;
+    public boolean jaque() {
+        Rey reyNegro = null;
+        Rey reyBlanco = null;
+
+        for (Pieza p : piezasBlancas) { if (p instanceof Rey) reyBlanco = (Rey) p; }
+        for (Pieza p : piezasNegras) { if (p instanceof Rey) reyNegro = (Rey) p; }
+
+        if (reyBlanco != null) {
+            for (Pieza p : piezasNegras) {
+                if (p.puedeAtacar(reyBlanco)) return true;
             }
         }
-
-        for (Pieza p : piezasNegras) {
-            if (p instanceof Rey) {
-                reyNegro = (Rey) p;
-            }
-        }
-
-        for (Pieza p : piezasNegras) {
-            if (p.puedeAtacar(reyBlanco)) {
-                return true;
-            }
-        }
-
-        for (Pieza p : piezasBlancas) {
-            if (p.puedeAtacar(reyNegro)) {
-                return true;
+        if (reyNegro != null) {
+            for (Pieza p : piezasBlancas) {
+                if (p.puedeAtacar(reyNegro)) return true;
             }
         }
         return false;
@@ -255,9 +201,6 @@ public class  Tablero implements Serializable {
 
     @Override
     public String toString() {
-        return "Piezas blancas: " + piezasBlancas + "\nPiezas negras: " + piezasNegras + "\nPiezas eliminadas: " + piezasEliminadas + "\nPuntuación blanca: " + puntuacionBlanca + "\nPuntuación negra: " + puntuacionNegra;
+        return "Piezas blancas: " + piezasBlancas.size() + " | Piezas negras: " + piezasNegras.size();
     }
 }
-
-
-

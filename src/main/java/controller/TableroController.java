@@ -3,16 +3,19 @@ package controller;
 import model.Color;
 import model.Pieza;
 import model.Tablero;
+import view.MenuPrincipal;
 
 public class  TableroController {
     private Tablero tablero;
     private Color turnoActual;
     private Pieza piezaSeleccionada;
+    private MenuPrincipal vista;
 
-    public TableroController() {
+    public TableroController( MenuPrincipal vista ) {
         this.tablero = new Tablero();
         this.turnoActual = Color.BLANCO;
         this.piezaSeleccionada = null;
+        this.vista = vista;
     }
 
     public Tablero getTablero() {
@@ -38,4 +41,73 @@ public class  TableroController {
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
+    // GESTIONAR PIEZA SELECCIONADA
+
+
+    public void gestionarSeleccion() {
+
+        boolean finSubmenu = false;
+
+        while (!finSubmenu) {
+
+            int opcion = vista.menuPiezaSeleccionada(
+                    piezaSeleccionada.getClass().getSimpleName()
+            );
+
+            switch (opcion) {
+
+                case 1: // MOVER
+
+                    int[] destino = vista.solicitarCoordenadas();
+
+                    if (destino != null) {
+
+                        try {
+
+                            tablero.moverPieza(
+                                    piezaSeleccionada.getFila(),
+                                    piezaSeleccionada.getColumna(),
+                                    destino[0],
+                                    destino[1]
+                            );
+
+                            cambiarTurno();
+                            piezaSeleccionada = null;
+                            finSubmenu = true;
+
+                        } catch (IllegalArgumentException e) {
+
+                            System.out.println("Movimiento no válido: " + e.getMessage());
+                        }
+                    }
+
+                    break;
+
+                case 2: // CANCELAR
+
+                    piezaSeleccionada = null;
+                    finSubmenu = true;
+                    break;
+
+                default:
+
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+
+// CAMBIAR TURNO
+
+
+    private void cambiarTurno() {
+
+        if (turnoActual == Color.BLANCO) {
+            turnoActual = Color.NEGRO;
+        } else {
+            turnoActual = Color.BLANCO;
+        }
+    }
+
 }
+
