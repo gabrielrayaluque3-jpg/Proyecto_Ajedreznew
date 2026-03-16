@@ -7,6 +7,9 @@ public class  Utils {
         }
     }
 
+    public static int calcularDistancia(int origen, int destino) {
+        return Math.abs(destino - origen);
+    }
     public static int calcularDireccion(int origen, int destino) {
         return Math.abs(Integer.compare(destino, origen));
     }

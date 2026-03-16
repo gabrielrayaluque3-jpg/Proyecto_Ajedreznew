@@ -68,7 +68,7 @@ public abstract class  Pieza implements Serializable {
         return objetivo == null;
     }
 
-    public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero);
+    public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido;
 
     @Override
     public boolean equals(Object o) {

@@ -10,20 +10,21 @@ public class  Rey extends Pieza {
     public Rey(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
-
     public int getPuntos() {
         return 100;
     }
 
-    public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) {
-        int nuevaPosicion= Utils.calcularDireccion(nuevaFila, nuevaColumna);
+    public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) throws MovimientoInvalido{
 
-        if(!(nuevaPosicion<=1)){
-            throw new IllegalArgumentException("La pieza Rey no puede moverse más de una casilla");
-        }else{
+        int distFila = Utils.calcularDistancia(this.getFila(), nuevaFila);
+        int distCol = Utils.calcularDistancia(this.getColumna(), nuevaColumna);
+        if (distFila <= 1 && distCol <= 1 && (distFila + distCol > 0)) {
             this.setFila(nuevaFila);
             this.setColumna(nuevaColumna);
             return true;
+        }
+        else {
+            throw new MovimientoInvalido("El Rey solo puede moverse 1 casilla.");
         }
     }
 

@@ -125,7 +125,7 @@ public class  Tablero implements Serializable {
         }
     }
 
-    private Pieza addPieza(Pieza pieza) {
+    public Pieza addPieza(Pieza pieza) {
         if (pieza.getColor() == Color.BLANCO) {
             piezasBlancas.add(pieza);
         } else {
@@ -202,22 +202,20 @@ public class  Tablero implements Serializable {
         Pieza p = getPieza(filaOrigen, colOrigen);
         if (p == null) {
             throw new IllegalArgumentException("No hay ninguna pieza en la posición " + filaOrigen + "," + colOrigen + ".");
-        } else if (p.movimiento(filaDestino, colDestino, this)) {
-            if(pDestino!=null) {
+        } else if(pDestino!=null) {
+            try {
+                p.movimiento(filaDestino, colDestino, this);
+            } catch (MovimientoInvalido e){
                 if (hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
-                    throw new IllegalArgumentException("Hay piezas entre la posición (" + filaOrigen + "," + colOrigen + ") y (" + filaDestino + "," + colDestino + ").");
-                } else if (!p.sePuedeMover(pDestino)) {
-                    throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + filaDestino + "," + colDestino + ").");
+                    throws e
                 } else if (!p.puedeAtacar(pDestino)) {
-                    throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + filaDestino + "," + colDestino + ").");
+                    throw new IllegalArgumentException("La pieza es del mismo color");
                 } else if (jaque()) {
                     throw new IllegalArgumentException("Tu rey está en jaque. No puedes moverte");
                 } else {
                     p.setFila(filaDestino);
                     p.setColumna(colDestino);
-                    if (pDestino != null) {
-                        capturarPieza(pDestino);
-                    }
+                    capturarPieza(pDestino);
                 }
             }
         }
