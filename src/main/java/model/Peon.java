@@ -19,14 +19,15 @@ public class  Peon extends Pieza {
         int distFila = nuevaFila - filaOrigen;//no se usa calcularDistancia pq contiene math.abs
         int distCol = Utils.calcularDistancia(colOrigen, nuevaColumna);
 
-        int direccion = (getColor() == Color.BLANCO) ? 1 : -1;
-        int filaInicial = (getColor() == Color.BLANCO) ? 2 : 7;
+        int direccion = (getColor() == Color.NEGRO) ? 1 : -1;
+        int filaInicial = (getColor() == Color.NEGRO) ? 2 : 7;
 
         if (distCol == 0) {
             // Movimiento simple
             if (distFila == direccion) {
                 if (tablero.getPieza(nuevaFila, nuevaColumna) == null) {
                     this.setFila(nuevaFila);
+                    this.setColumna(nuevaColumna);
                     return true;
                 }
                 throw new MovimientoInvalido("El peón tiene el camino bloqueado.");
@@ -34,6 +35,8 @@ public class  Peon extends Pieza {
 
             // Movimiento doble desde casilla inicial
             if (filaOrigen == filaInicial && distFila == 2 * direccion) {
+                this.setFila(nuevaFila);
+                this.setColumna(nuevaColumna);
                 return true;
             }else{
                 throw new MovimientoInvalido("El peon solo se puede mover 2 casillas en su posicion inicial.");
@@ -42,17 +45,24 @@ public class  Peon extends Pieza {
         }
 
        //Captura en diagonal
-        if (distFila == direccion && distCol == 1) {
+        else if (distCol == 1 && distFila == direccion) {
             Pieza piezaDestino = tablero.getPieza(nuevaFila, nuevaColumna);
-            if (piezaDestino != null && piezaDestino.getColor() != this.getColor()) {
-                this.setFila(nuevaFila);
-                this.setColumna(nuevaColumna);
-                return true;
+
+            if (piezaDestino == null) {
+                throw new MovimientoInvalido("El peón solo mueve en diagonal si es para capturar.");
             }
-            throw new MovimientoInvalido("El peón solo puede mover en diagonal para capturar.");
+
+            if (piezaDestino.getColor() == this.getColor()) {
+                throw new MovimientoInvalido("No puedes capturar tus propias piezas.");
+            }
+
+            // Si llegó aquí, es captura legal
+            this.setFila(nuevaFila);
+            this.setColumna(nuevaColumna);
+            return true;
         }
 
-        throw new MovimientoInvalido("Movimiento del peón inválido.");
+        throw new MovimientoInvalido("Movimiento de peón no permitido.");
     }
 
     @Override
