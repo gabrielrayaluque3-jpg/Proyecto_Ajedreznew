@@ -18,7 +18,7 @@ public class Caballo extends Pieza implements PiezaSaltadora {
             this.setColumna(nuevaColumna);
             return true;
         } else {
-            throw new MovimientoInvalido("El caballo solo se mueve en forma de L (2x1 o 1x2).");
+            throw new MovimientoInvalido("El caballo solo se mueve en forma de L.");
         }
     }
 

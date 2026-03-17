@@ -7,11 +7,12 @@ public class  Reina extends Pieza {
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {
         if (Utils.esRectilineo(getFila(), getColumna(), nuevaFila, nuevaColumna) && !Utils.esDiagonal(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
             return true;
+        }else{
+            throw new MovimientoInvalido("La reina solo se mueve en línea recta.");
         }
-        return false;
     }
 
     @Override
