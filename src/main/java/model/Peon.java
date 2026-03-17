@@ -13,7 +13,7 @@ public class  Peon extends Pieza {
         int colOrigen = getColumna();
 
         int direccion = (getColor() == Color.BLANCO) ? 1 : -1;
-        int filaInicial = (getColor() == Color.BLANCO) ? 1 : 6;
+        int filaInicial = (getColor() == Color.BLANCO) ? 2 : 7;
 
         int distFila = nuevaFila - filaOrigen;
         int distCol = Math.abs(nuevaColumna - colOrigen);
