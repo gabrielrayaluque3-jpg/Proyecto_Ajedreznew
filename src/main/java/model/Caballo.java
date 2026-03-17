@@ -1,12 +1,17 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+
 import utils.Utils;
 
-public class Caballo extends Pieza implements PiezaSaltadora {
+public class Caballo extends Pieza implements PiezaSaltadora, Serializable {
 
     public Caballo(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
+
+    public Caballo() { super(); }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {

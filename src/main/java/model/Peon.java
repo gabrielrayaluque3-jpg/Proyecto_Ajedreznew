@@ -1,12 +1,15 @@
 package model;
 
 import utils.Utils;
+import javax.xml.bind.annotation.XmlRootElement;
 
 public class  Peon extends Pieza {
 
     public Peon(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
+
+    public Peon() { super(); }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {

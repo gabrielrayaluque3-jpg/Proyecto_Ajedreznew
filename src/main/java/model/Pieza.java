@@ -1,10 +1,17 @@
 package model;
 
+import DataAccess.XMLManager;
 import utils.Utils;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 import java.util.Objects;
 
+@XmlSeeAlso({Rey.class, Reina.class, Torre.class, Alfil.class, Caballo.class, Peon.class})
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class  Pieza implements Serializable {
 
     //las posiciones son del 0 al 7
