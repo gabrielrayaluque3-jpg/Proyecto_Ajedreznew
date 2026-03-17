@@ -2,6 +2,8 @@ package utils;
 
 import model.*;
 
+import java.util.Scanner;
+
 public class  Utils {
     public static void validarPosicion (int fila, int columna){
         if (fila < 1 || fila > 8 || columna < 1 || columna > 8) {
@@ -54,5 +56,14 @@ public class  Utils {
             }
         }
         return false;
+    }
+
+    public static Scanner teclado = new Scanner(System.in);
+
+    public static String pideString(String msn) {
+        String cadena=null;
+        System.out.println(msn);
+        cadena = teclado.next();
+        return cadena;
     }
 }
