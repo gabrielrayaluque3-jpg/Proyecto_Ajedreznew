@@ -16,6 +16,8 @@ public class  Torre extends Pieza {
     public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) throws MovimientoInvalido {
 
         if (Utils.esRectilineo(getFila(),getColumna(), nuevaFila, nuevaColumna)){
+            this.setFila(nuevaFila);
+            this.setColumna(nuevaColumna);
             return true;
         }else{
             throw new MovimientoInvalido("La torre solo se mueve en línea recta.");

@@ -71,26 +71,27 @@ public class  Tablero implements Serializable {
     }
 
     public void reiniciarTablero() {
+        //las columnas funcionan a la inversa
         vaciarTablero();
-        addPieza("Rey", 1, 5, Color.BLANCO);
-        addPieza("Rey", 8, 4, Color.NEGRO);
-        addPieza("Reina", 1, 4, Color.BLANCO);
-        addPieza("Reina", 8, 5, Color.NEGRO);
-        addPieza("Torre", 1, 1, Color.BLANCO);
-        addPieza("Torre", 1, 8, Color.BLANCO);
-        addPieza("Torre", 8, 1, Color.NEGRO);
-        addPieza("Torre", 8, 8, Color.NEGRO);
-        addPieza("Alfil", 1, 3, Color.BLANCO);
-        addPieza("Alfil", 1, 6, Color.BLANCO);
-        addPieza("Alfil", 8, 3, Color.NEGRO);
-        addPieza("Alfil", 8, 6, Color.NEGRO);
-        addPieza("Caballo", 1, 2, Color.BLANCO);
-        addPieza("Caballo", 1, 7, Color.BLANCO);
-        addPieza("Caballo", 8, 2, Color.NEGRO);
-        addPieza("Caballo", 8, 7, Color.NEGRO);
+        addPieza("Rey", 1, 5, Color.NEGRO);
+        addPieza("Rey", 8, 4, Color.BLANCO);
+        addPieza("Reina", 1, 4, Color.NEGRO);
+        addPieza("Reina", 8, 5, Color.BLANCO);
+        addPieza("Torre", 1, 1, Color.NEGRO);
+        addPieza("Torre", 1, 8, Color.NEGRO);
+        addPieza("Torre", 8, 1, Color.BLANCO);
+        addPieza("Torre", 8, 8, Color.BLANCO);
+        addPieza("Alfil", 1, 3, Color.NEGRO);
+        addPieza("Alfil", 1, 6, Color.NEGRO);
+        addPieza("Alfil", 8, 3, Color.BLANCO);
+        addPieza("Alfil", 8, 6, Color.BLANCO);
+        addPieza("Caballo", 1, 2, Color.NEGRO);
+        addPieza("Caballo", 1, 7, Color.NEGRO);
+        addPieza("Caballo", 8, 2, Color.BLANCO);
+        addPieza("Caballo", 8, 7, Color.BLANCO);
         for (int i = 1; i < 9; i++) {
-            addPieza("Peon", 2, i, Color.BLANCO);
-            addPieza("Peon", 7, i, Color.NEGRO);
+            addPieza("Peon", 2, i, Color.NEGRO);
+            addPieza("Peon", 7, i, Color.BLANCO);
         }
     }
 
@@ -188,9 +189,9 @@ public class  Tablero implements Serializable {
         //Esto es un poco lio, por eso comento todo
         try {
             //Posicion temporal para simular la pieza
+            p.movimiento(filaDestino, colDestino, this);
             p.setFila(filaDestino);
             p.setColumna(colDestino);
-
             //se quita temporalmente la pieza de su lista para simular jaque
             if (pDestino != null) {
                 if (pDestino.getColor() == Color.BLANCO) piezasBlancas.remove(pDestino);
@@ -208,13 +209,6 @@ public class  Tablero implements Serializable {
                 }
                 throw new IllegalArgumentException("Movimiento ilegal: Tu rey queda en jaque.\n");
             }
-
-            //Si no hay jaque de ningun rey, se vuelve al movimiento normal
-            p.setFila(filaOriginal);
-            p.setColumna(colOriginal);
-
-            // Si p.movimiento lanza excepción, saltará al catch
-            p.movimiento(filaDestino, colDestino, this);
 
             // Se devuelve la pieza simulada eliminada
             if (pDestino != null) {
