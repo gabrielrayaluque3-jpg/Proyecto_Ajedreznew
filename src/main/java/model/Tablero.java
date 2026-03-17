@@ -269,4 +269,6 @@ public class Tablero implements Serializable {
         resultado = resultado + "  a b c d e f g h\n";
         return resultado;
     }
+
+
 }
