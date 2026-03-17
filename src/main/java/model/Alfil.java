@@ -13,11 +13,12 @@ public class  Alfil extends Pieza {
     public Alfil() { super(); }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {
         if(Utils.esDiagonal(getFila(),getColumna(),nuevaFila,nuevaColumna)){
             return true;
+        }else{
+            throw new MovimientoInvalido("El alfil solo se mueve en diagonal.");
         }
-        return false;
     }
 
     public int getPuntos() {
