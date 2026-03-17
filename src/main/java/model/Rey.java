@@ -2,6 +2,7 @@ package model;
 
 import utils.Utils;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 
@@ -10,6 +11,9 @@ public class  Rey extends Pieza {
     public Rey(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
+
+    public Rey() { super(); }
+
     public int getPuntos() {
         return 100;
     }

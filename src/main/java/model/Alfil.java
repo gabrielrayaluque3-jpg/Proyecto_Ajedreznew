@@ -2,11 +2,15 @@ package model;
 
 import utils.Utils;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 public class  Alfil extends Pieza {
 
     public Alfil(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
+
+    public Alfil() { super(); }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {

@@ -3,6 +3,7 @@ package controller;
 import model.Color;
 import model.Pieza;
 import model.Tablero;
+import utils.Utils;
 import view.MenuPrincipal;
 
 import javax.swing.text.View;
@@ -116,6 +117,7 @@ public class  TableroController {
 
 
     public void ejecutarMenu() {
+        Scanner sc = new Scanner(System.in);
         boolean salir = false;
 
         while (!salir) {
@@ -141,7 +143,10 @@ public class  TableroController {
                     System.out.println("-> Cargando tablero...");
                     break;
                 case 4:
+                    System.out.print("Introduce el nombre: ");
+                    String nombre=sc.nextLine();
                     System.out.println("-> Guardando tablero...");
+                    Utils.guardarTablero(this.tablero,nombre);
                     break;
                 case 0:
                     System.out.println("Saliendo...");

@@ -13,7 +13,7 @@ public class  XMLManager {
             JAXBContext context = JAXBContext.newInstance(t.getClass());
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(t,new File("persona.xml"));
+            marshaller.marshal(t,new File(fileName));
             result=true;
         } catch (JAXBException e) {
             throw new RuntimeException(e);

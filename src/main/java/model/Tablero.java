@@ -1,13 +1,22 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import static utils.Utils.*;
 
-public class Tablero implements Serializable {
+@XmlAccessorType (XmlAccessType.FIELD)
+@XmlRootElement(name="tablero")
+public class  Tablero implements Serializable {
+    @XmlElement(name = "piezasBlancas", type = Pieza.class)
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
+    @XmlElement(name = "piezasNegras", type = Pieza.class)
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
+    @XmlElement(name = "piezasEliminadas", type = Pieza.class)
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
 
     public int puntuacionBlanca = 139;
@@ -52,10 +61,10 @@ public class Tablero implements Serializable {
 
     public Tablero crearCopiaTablero() {
         Tablero copia = new Tablero();
-        for (Pieza p : piezasBlancas){
+        for (Pieza p : piezasBlancas) {
             copia.addPieza(p.copiar()); // Usar .copiar()
         }
-        for (Pieza p : piezasNegras){
+        for (Pieza p : piezasNegras) {
             copia.addPieza(p.copiar());
         }
         return copia;
@@ -97,13 +106,26 @@ public class Tablero implements Serializable {
     public Pieza addPieza(String nombre, int fila, int columna, Color color) {
         Pieza pieza = null;
         switch (nombre) {
-            case "Reina": pieza = new Reina(fila, columna, color); break;
-            case "Caballo": pieza = new Caballo(fila, columna, color); break;
-            case "Alfil": pieza = new Alfil(fila, columna, color); break;
-            case "Torre": pieza = new Torre(fila, columna, color); break;
-            case "Peon": pieza = new Peon(fila, columna, color); break;
-            case "Rey": pieza = new Rey(fila, columna, color); break;
-            default: throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
+            case "Reina":
+                pieza = new Reina(fila, columna, color);
+                break;
+            case "Caballo":
+                pieza = new Caballo(fila, columna, color);
+                break;
+            case "Alfil":
+                pieza = new Alfil(fila, columna, color);
+                break;
+            case "Torre":
+                pieza = new Torre(fila, columna, color);
+                break;
+            case "Peon":
+                pieza = new Peon(fila, columna, color);
+                break;
+            case "Rey":
+                pieza = new Rey(fila, columna, color);
+                break;
+            default:
+                throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
         }
         return addPieza(pieza);
     }
@@ -138,7 +160,7 @@ public class Tablero implements Serializable {
         return false;
     }
 
-    public void moverPieza(String origen, String destino) throws MovimientoInvalido{
+    public void moverPieza(String origen, String destino) throws MovimientoInvalido {
         int filaOrigen = Character.getNumericValue(origen.charAt(0));
         int colOrigen = letraAColumna(origen.charAt(1));
         int filaDestino = Character.getNumericValue(destino.charAt(0));
@@ -153,7 +175,8 @@ public class Tablero implements Serializable {
             throw new IllegalArgumentException("No puedes capturar tu propia pieza.\n");
         if (origen.equals(destino)) {
             throw new IllegalArgumentException("La casilla de destino debe ser diferente a la de origen.");
-        }if (!(p instanceof PiezaSaltadora) && hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
+        }
+        if (!(p instanceof PiezaSaltadora) && hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
             throw new IllegalArgumentException("Hay piezas en medio.\n");
         }
 
@@ -215,6 +238,7 @@ public class Tablero implements Serializable {
         }
         piezasEliminadas.add(capturada);
     }
+
     public boolean esReyEnJaque(Color colorDelRey) {
         Pieza elRey = null;
         ArrayList<Pieza> aliadas = (colorDelRey == Color.BLANCO) ? piezasBlancas : piezasNegras;
@@ -269,6 +293,4 @@ public class Tablero implements Serializable {
         resultado = resultado + "  a b c d e f g h\n";
         return resultado;
     }
-
-
 }

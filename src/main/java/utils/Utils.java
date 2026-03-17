@@ -1,5 +1,14 @@
 package utils;
 
+import DataAccess.XMLManager;
+import model.Tablero;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+
 import model.*;
 
 import java.util.Scanner;
@@ -66,4 +75,13 @@ public class  Utils {
         cadena = teclado.next();
         return cadena;
     }
+
+    public static boolean guardarTablero(Tablero tablero, String ruta) {
+        return XMLManager.writeXML(ruta,ruta);
+    }
+
+    public static Tablero cargarTablero(Tablero tablero, String ruta) {
+        return XMLManager.readXML(tablero, ruta);
+    }
+
 }
