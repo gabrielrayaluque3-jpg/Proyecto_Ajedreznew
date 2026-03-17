@@ -4,23 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="He borrado los readme.md que habia en cada clase, y he puesto uno general con el contenido del proyecto.">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="bugfix: arreglos temporales al movimiento">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/TableroController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Alfil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Caballo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Peon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pieza.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PiezaSaltadora.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Reina.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Rey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tablero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Torre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MenuPrincipal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Caballo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Caballo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Pieza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Pieza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PiezaSaltadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PiezaSaltadora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Tablero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Caballo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Caballo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Pieza.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Pieza.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/PiezaSaltadora.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/PiezaSaltadora.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Rey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Rey.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Tablero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utils/Utils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,17 +47,35 @@
     &quot;assignee&quot;: &quot;tprxd07&quot;
   }
 }</component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="bugfix/moverPieza" />
+                    <option name="lastUsedInstant" value="1773659789" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1773659788" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
     </option>
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/gabrielrayaluque3-jpg/Proyecto_Ajedreznew.git&quot;,
-    &quot;accountId&quot;: &quot;2f16a05c-4dd0-49d8-9d4a-bd54afaac185&quot;
+    &quot;accountId&quot;: &quot;f39306d2-1b24-4434-b78a-649ad9a0424d&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -88,11 +104,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "bugfix/cambio-maven",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "bugfix/moverPieza",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -123,6 +141,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dc6f840c-d800-4f1b-9e18-2e04f4131f9f" name="Changes" comment="" />
@@ -147,12 +172,32 @@
       <option name="project" value="LOCAL" />
       <updated>1773310753276</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="bugfix: arreglos temporales al movimiento">
+      <option name="closed" value="true" />
+      <created>1773663543516</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773663543516</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="he borrado ClaseTorre que se habia duplicado en otro paquete" />
     <MESSAGE value="he arreglado errores de la clase alfil" />
-    <option name="LAST_COMMIT_MESSAGE" value="he arreglado errores de la clase alfil" />
+    <MESSAGE value="bugfix: arreglos temporales al movimiento" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix: arreglos temporales al movimiento" />
   </component>
 </project>

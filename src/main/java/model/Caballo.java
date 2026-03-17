@@ -1,17 +1,25 @@
 package model;
 
-public class  Caballo extends Pieza {
-    final int puntos = 3;
+import utils.Utils;
+
+public class Caballo extends Pieza implements PiezaSaltadora {
 
     public Caballo(int fila, int columna, Color color) {
         super(fila, columna, color);
     }
 
     @Override
-    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) {
-        int distFila = nuevaFila - getFila();
-        int distCol = nuevaColumna - getColumna();
-        return (distFila == 2 && distCol == 1) || (distFila == 1 && distCol == 2);
+    public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {
+        int distFila = Utils.calcularDistancia(this.getFila(), nuevaFila);
+        int distCol = Utils.calcularDistancia(this.getColumna(), nuevaColumna);
+
+        if ((distFila == 2 && distCol == 1) || (distFila == 1 && distCol == 2)){
+            this.setFila(nuevaFila);
+            this.setColumna(nuevaColumna);
+            return true;
+        } else {
+            throw new MovimientoInvalido("El caballo solo se mueve en forma de L (2x1 o 1x2).");
+        }
     }
 
     public int getPuntos() {
@@ -23,6 +31,10 @@ public class  Caballo extends Pieza {
         return new Caballo(getFila(), getColumna(), getColor());
     }
 
+    @Override
+    public boolean puedeSaltar() {
+        return true;
+    }
 
     @Override
     public String toString() {
