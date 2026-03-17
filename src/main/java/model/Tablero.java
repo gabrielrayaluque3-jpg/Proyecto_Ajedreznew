@@ -66,7 +66,7 @@ public class Tablero implements Serializable {
             }
             resultado = resultado + "\n";
         }
-        resultado = resultado + "  a b c d e f g h";
+        resultado = resultado + "  a b c d e f g h\n";
         return resultado;
     }
 
@@ -144,6 +144,12 @@ public class Tablero implements Serializable {
 
         if (p == null) {
             throw new IllegalArgumentException("No hay ninguna pieza en la posición seleccionada.");
+        while (filaActual != filaDestino || colActual != colDestino) {
+            if (getPieza(filaActual, colActual) != null) {
+                return true;
+            }
+            if (filaActual != filaDestino) filaActual += filaIncremento;
+            if (colActual != colDestino) colActual += colIncremento;
         }
 
         // Validación de movimiento
@@ -160,6 +166,31 @@ public class Tablero implements Serializable {
                 throw new IllegalArgumentException("No se puede capturar al Rey.");
             }
             capturarPieza(pDestino);
+        int filaDestino = Character.getNumericValue(destino.charAt(0));
+        int colDestino = letraAColumna(destino.charAt(1));
+
+        Pieza pDestino = getPieza(filaDestino, colDestino);
+        Pieza p = getPieza(filaOrigen, colOrigen);
+        if (p == null) {
+            throw new IllegalArgumentException("No hay ninguna pieza en la posición " + filaOrigen + "," + colOrigen + ".");
+        } else if (p.movimiento(filaDestino, colDestino, this)) {
+            if(pDestino!=null) {
+                if (hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
+                    throw new IllegalArgumentException("Hay piezas entre la posición (" + filaOrigen + "," + colOrigen + ") y (" + filaDestino + "," + colDestino + ").");
+                } else if (!p.sePuedeMover(pDestino)) {
+                    throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + filaDestino + "," + colDestino + ").");
+                } else if (!p.puedeAtacar(pDestino)) {
+                    throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + filaDestino + "," + colDestino + ").");
+                } else if (jaque()) {
+                    throw new IllegalArgumentException("Tu rey está en jaque. No puedes moverte");
+                } else {
+                    p.setFila(filaDestino);
+                    p.setColumna(colDestino);
+                    if (pDestino != null) {
+                        capturarPieza(pDestino);
+                    }
+                }
+            }
         }
 
         // Realizar el movimiento físico

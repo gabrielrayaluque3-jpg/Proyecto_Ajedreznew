@@ -56,11 +56,16 @@ public abstract class  Pieza implements Serializable {
     }
 
     public boolean puedeAtacar(Pieza objetivo){
-        return objetivo.getColor() != this.getColor();
+        if (objetivo == null) {
+            return false;
+        }
+        else{
+            return this.color != objetivo.getColor();
+        }
     }
 
     public boolean sePuedeMover(Pieza objetivo){
-        return this.fila != objetivo.getFila() && this.columna != objetivo.getColumna();
+        return objetivo == null;
     }
 
     public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero);

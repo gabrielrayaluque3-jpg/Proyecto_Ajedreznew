@@ -12,5 +12,8 @@ public class  Test {
         System.out.println("Tablero reiniciado:");
         System.out.println(tablero.printTablero());
         System.out.println(tablero);
+        tablero.moverPieza("2b","3b");
+        System.out.println(tablero.printTablero());
     }
 }
+
