@@ -1,7 +1,5 @@
 package model;
 
-import utils.Utils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -124,13 +122,12 @@ public class Tablero implements Serializable {
         return null;
     }
 
-    // NUEVO MÉTODO PARA EL CONTROLADOR (Recibe INT)
-    public void moverPieza(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
-        Pieza p = getPieza(filaOrigen, colOrigen);
-        Pieza pDestino = getPieza(filaDestino, colDestino);
+    public boolean hayPiezasEntre(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
+        int filaIncremento = calcularDireccion(filaOrigen, filaDestino);
+        int colIncremento = calcularDireccion(colOrigen, colDestino);
+        int filaActual = filaOrigen + filaIncremento;
+        int colActual = colOrigen + colIncremento;
 
-        if (p == null) {
-            throw new IllegalArgumentException("No hay ninguna pieza en la posición seleccionada.");
         while (filaActual != filaDestino || colActual != colDestino) {
             if (getPieza(filaActual, colActual) != null) {
                 return true;
@@ -138,29 +135,18 @@ public class Tablero implements Serializable {
             if (filaActual != filaDestino) filaActual += filaIncremento;
             if (colActual != colDestino) colActual += colIncremento;
         }
+        return false;
+    }
 
     public void moverPieza(String origen, String destino) throws MovimientoInvalido{
         int filaOrigen = Character.getNumericValue(origen.charAt(0));
         int colOrigen = letraAColumna(origen.charAt(1));
-        // Validación de movimiento
-        if (!p.sePuedeMover(pDestino)) {
-            throw new IllegalArgumentException("Esa pieza no puede moverse así.");
-        }
-
-        // Gestión de capturas
-        if (pDestino != null) {
-            if (pDestino.getColor() == p.getColor()) {
-                throw new IllegalArgumentException("No puedes capturar tus propias piezas.");
-            }
-            if (pDestino instanceof Rey) {
-                throw new IllegalArgumentException("No se puede capturar al Rey.");
-            }
-            capturarPieza(pDestino);
         int filaDestino = Character.getNumericValue(destino.charAt(0));
         int colDestino = letraAColumna(destino.charAt(1));
 
         Pieza pDestino = getPieza(filaDestino, colDestino);
         Pieza p = getPieza(filaOrigen, colOrigen);
+
         if (p == null) throw new IllegalArgumentException("No hay pieza en origen.\n");
         if (pDestino instanceof Rey) throw new IllegalArgumentException("No se puede capturar al Rey.\n");
         if (pDestino != null && pDestino.getColor() == p.getColor())
@@ -219,12 +205,6 @@ public class Tablero implements Serializable {
 
         this.puntuacionBlanca = getPuntuacionBlanca();
         this.puntuacionNegra = getPuntuacionNegra();
-        // Realizar el movimiento físico
-        p.movimiento(filaDestino, colDestino, this);
-
-        // Actualizar puntuaciones
-        getPuntuacionBlanca();
-        getPuntuacionNegra();
     }
 
     public void capturarPieza(Pieza capturada) {
@@ -250,32 +230,13 @@ public class Tablero implements Serializable {
                 if (enemiga.puedeAtacar(elRey)) {
                     if (validarTrayectoria(enemiga, elRey.getFila(), elRey.getColumna())) {
                         if (enemiga instanceof PiezaSaltadora || !hayPiezasEntre(enemiga.getFila(), enemiga.getColumna(), elRey.getFila(), elRey.getColumna())) {
-                            return true; // ¡JAQUE DETECTADO!
+                            return true; // Hay jaque
                         }
                     }
                 }
             }
         }
-
-
-    public boolean jaque() {
-        Rey reyNegro = null;
-        Rey reyBlanco = null;
-
-        for (Pieza p : piezasBlancas) { if (p instanceof Rey) reyBlanco = (Rey) p; }
-        for (Pieza p : piezasNegras) { if (p instanceof Rey) reyNegro = (Rey) p; }
-
-        if (reyBlanco != null) {
-            for (Pieza p : piezasNegras) {
-                if (p.puedeAtacar(reyBlanco)) return true;
-            }
-        }
-        if (reyNegro != null) {
-            for (Pieza p : piezasBlancas) {
-                if (p.puedeAtacar(reyNegro)) return true;
-            }
-        }
-        return false;
+        return false; // No hay jaque
     }
 
     @Override
@@ -307,6 +268,5 @@ public class Tablero implements Serializable {
         }
         resultado = resultado + "  a b c d e f g h\n";
         return resultado;
-        return "Piezas blancas: " + piezasBlancas.size() + " | Piezas negras: " + piezasNegras.size();
     }
 }
