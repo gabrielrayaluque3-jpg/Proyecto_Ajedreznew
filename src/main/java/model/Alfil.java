@@ -31,7 +31,7 @@ public class  Alfil extends Pieza {
     }
     @Override
     public String toString() {
-        if (getColor() == Color.BLANCO) {
+        if (getColor() != Color.BLANCO) {
             return "♝";
         } else {
             return "♗";

@@ -71,10 +71,6 @@ public abstract class  Pieza implements Serializable {
         }
     }
 
-    public boolean sePuedeMover(Pieza objetivo){
-        return objetivo == null;
-    }
-
     public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido;
 
     @Override

@@ -19,8 +19,8 @@ public class  Peon extends Pieza {
         int distFila = nuevaFila - filaOrigen;//no se usa calcularDistancia pq contiene math.abs
         int distCol = Utils.calcularDistancia(colOrigen, nuevaColumna);
 
-        int direccion = (getColor() == Color.NEGRO) ? 1 : -1;
-        int filaInicial = (getColor() == Color.NEGRO) ? 2 : 7;
+        int direccion = (getColor() == Color.BLANCO) ? 1 : -1;
+        int filaInicial = (getColor() == Color.BLANCO) ? 2 : 7;
 
         if (distCol == 0) {
             // Movimiento simple
@@ -77,7 +77,7 @@ public class  Peon extends Pieza {
 
     @Override
     public String toString() {
-        if (getColor() == Color.BLANCO) {
+        if (getColor() != Color.BLANCO) {
             return "♟";
         } else {
             return "♙";

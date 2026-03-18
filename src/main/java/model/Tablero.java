@@ -68,10 +68,6 @@ public class  Tablero implements Serializable {
         return turnoActual;
     }
 
-    public void setTurnoActual(Color turnoActual) {
-        this.turnoActual = turnoActual;
-    }
-
     private int letraAColumna(char letra) {
         return Character.toUpperCase(letra) - 'A' + 1;
     }
@@ -86,39 +82,28 @@ public class  Tablero implements Serializable {
         piezasEliminadas.clear();
     }
 
-    public Tablero crearCopiaTablero() {
-        Tablero copia = new Tablero();
-        for (Pieza p : piezasBlancas) {
-            copia.addPieza(p.copiar()); // Usar .copiar()
-        }
-        for (Pieza p : piezasNegras) {
-            copia.addPieza(p.copiar());
-        }
-        return copia;
-    }
-
     public void reiniciarTablero() {
         //las columnas funcionan a la inversa
         vaciarTablero();
-        addPieza("Rey", 1, 4, Color.NEGRO);
-        addPieza("Rey", 8, 4, Color.BLANCO);
-        addPieza("Reina", 1, 5, Color.NEGRO);
-        addPieza("Reina", 8, 5, Color.BLANCO);
-        addPieza("Torre", 1, 1, Color.NEGRO);
-        addPieza("Torre", 1, 8, Color.NEGRO);
-        addPieza("Torre", 8, 1, Color.BLANCO);
-        addPieza("Torre", 8, 8, Color.BLANCO);
-        addPieza("Alfil", 1, 3, Color.NEGRO);
-        addPieza("Alfil", 1, 6, Color.NEGRO);
-        addPieza("Alfil", 8, 3, Color.BLANCO);
-        addPieza("Alfil", 8, 6, Color.BLANCO);
-        addPieza("Caballo", 1, 2, Color.NEGRO);
-        addPieza("Caballo", 1, 7, Color.NEGRO);
-        addPieza("Caballo", 8, 2, Color.BLANCO);
-        addPieza("Caballo", 8, 7, Color.BLANCO);
+        addPieza("Rey", 1, 5, Color.BLANCO);
+        addPieza("Rey", 8, 5, Color.NEGRO);
+        addPieza("Reina", 1, 4, Color.BLANCO);
+        addPieza("Reina", 8, 4, Color.NEGRO);
+        addPieza("Torre", 1, 1, Color.BLANCO);
+        addPieza("Torre", 1, 8, Color.BLANCO);
+        addPieza("Torre", 8, 1, Color.NEGRO);
+        addPieza("Torre", 8, 8, Color.NEGRO);
+        addPieza("Alfil", 1, 3, Color.BLANCO);
+        addPieza("Alfil", 1, 6, Color.BLANCO);
+        addPieza("Alfil", 8, 3, Color.NEGRO);
+        addPieza("Alfil", 8, 6, Color.NEGRO);
+        addPieza("Caballo", 1, 2, Color.BLANCO);
+        addPieza("Caballo", 1, 7, Color.BLANCO);
+        addPieza("Caballo", 8, 2, Color.NEGRO);
+        addPieza("Caballo", 8, 7, Color.NEGRO);
         for (int i = 1; i < 9; i++) {
-            addPieza("Peon", 2, i, Color.NEGRO);
-            addPieza("Peon", 7, i, Color.BLANCO);
+            addPieza("Peon", 2, i, Color.BLANCO);
+            addPieza("Peon", 7, i, Color.NEGRO);
         }
         this.turnoActual = Color.BLANCO;
     }
@@ -133,29 +118,15 @@ public class  Tablero implements Serializable {
     }
 
     public Pieza addPieza(String nombre, int fila, int columna, Color color) {
-        Pieza pieza = null;
-        switch (nombre) {
-            case "Reina":
-                pieza = new Reina(fila, columna, color);
-                break;
-            case "Caballo":
-                pieza = new Caballo(fila, columna, color);
-                break;
-            case "Alfil":
-                pieza = new Alfil(fila, columna, color);
-                break;
-            case "Torre":
-                pieza = new Torre(fila, columna, color);
-                break;
-            case "Peon":
-                pieza = new Peon(fila, columna, color);
-                break;
-            case "Rey":
-                pieza = new Rey(fila, columna, color);
-                break;
-            default:
-                throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
-        }
+        Pieza pieza = switch (nombre) {
+            case "Reina" -> new Reina(fila, columna, color);
+            case "Caballo" -> new Caballo(fila, columna, color);
+            case "Alfil" -> new Alfil(fila, columna, color);
+            case "Torre" -> new Torre(fila, columna, color);
+            case "Peon" -> new Peon(fila, columna, color);
+            case "Rey" -> new Rey(fila, columna, color);
+            default -> throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
+        };
         return addPieza(pieza);
     }
 
@@ -200,7 +171,7 @@ public class  Tablero implements Serializable {
 
         if (p == null)
             throw new IllegalArgumentException("No hay pieza en origen.\n");
-        if (p.getColor() == this.turnoActual)
+        if (p.getColor() != this.turnoActual)
             throw new IllegalArgumentException("No es tu turno. Turno de: " + this.turnoActual+"\n");
         if (pDestino instanceof Rey)
             throw new IllegalArgumentException("No se puede capturar al Rey.\n");

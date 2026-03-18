@@ -43,7 +43,7 @@ public class Caballo extends Pieza implements PiezaSaltadora, Serializable {
 
     @Override
     public String toString() {
-        if (getColor() == Color.BLANCO) {
+        if (getColor() != Color.BLANCO) {
             return "♞";
         } else {
             return "♘";

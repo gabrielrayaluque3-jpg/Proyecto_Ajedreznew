@@ -1,8 +1,6 @@
 package controller;
 
-import model.Color;
 import model.MovimientoInvalido;
-import model.Pieza;
 import model.Tablero;
 import utils.Utils;
 import view.MenuPrincipal;
@@ -13,7 +11,7 @@ import static utils.Utils.pideString;
 
 public class  TableroController {
     private Tablero tablero;
-    private MenuPrincipal vista;
+    private final MenuPrincipal vista;
 
     public TableroController( MenuPrincipal vista ) {
         this.tablero = new Tablero();
@@ -34,7 +32,7 @@ public class  TableroController {
         boolean finalizarMenu=false;
         while (!finalizarMenu) {
             vista.mostrarEstadoPartida(tablero);
-            switch (vista.menuPrincipal()) {
+            switch (MenuPrincipal.menuPrincipal()) {
                 case 1:
                     gestionarSeleccion();
                     break;
@@ -74,8 +72,8 @@ public class  TableroController {
                     boolean movimientoValido = false;
                     while (!movimientoValido) {
                         try {
-                            String origen = pideString("Introduce casilla origen: ");
-                            String destino = pideString("Introduce casilla destino: ");
+                            String origen = pideString("\nIntroduce casilla origen: ");
+                            String destino = pideString("\nIntroduce casilla destino: ");
 
                             tablero.moverPieza(origen, destino);
 
