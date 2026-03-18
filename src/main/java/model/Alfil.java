@@ -10,7 +10,7 @@ public class  Alfil extends Pieza {
         super(fila, columna, color);
     }
 
-    public Alfil() { super(); }
+    public Alfil() {  }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {

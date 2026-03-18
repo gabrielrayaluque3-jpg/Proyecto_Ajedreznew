@@ -1,9 +1,6 @@
 package model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,11 +9,35 @@ import static utils.Utils.*;
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlRootElement(name="tablero")
 public class  Tablero implements Serializable {
-    @XmlElement(name = "piezasBlancas", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasBlancas")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
-    @XmlElement(name = "piezasNegras", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasNegras")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
-    @XmlElement(name = "piezasEliminadas", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasEliminadas")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
 
     public int puntuacionBlanca = 139;

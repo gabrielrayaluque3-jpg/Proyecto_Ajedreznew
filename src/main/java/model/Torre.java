@@ -10,7 +10,7 @@ public class  Torre extends Pieza {
         super(fila, columna, color);
     }
 
-    public Torre() { super(); }
+    public Torre() { }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna,Tablero tablero) throws MovimientoInvalido {

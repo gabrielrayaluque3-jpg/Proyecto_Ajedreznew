@@ -94,7 +94,7 @@ public class  Utils {
     }
 
     public static boolean guardarTablero(Tablero tablero, String ruta) {
-        return XMLManager.writeXML(ruta,ruta);
+        return XMLManager.writeXML(tablero,ruta);
     }
 
     public static Tablero cargarTablero(Tablero tablero, String ruta) {
