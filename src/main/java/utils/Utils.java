@@ -11,6 +11,7 @@ import java.io.File;
 
 import model.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class  Utils {
@@ -74,6 +75,22 @@ public class  Utils {
         System.out.println(msn);
         cadena = teclado.next();
         return cadena;
+    }
+    public static int pideEntero(String msn) {
+        int n = 0;
+        boolean error = false;
+        do {
+            try {
+                System.out.println(msn);
+                n = teclado.nextInt();
+                error = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido");
+                error = true;
+                teclado.next();
+            }
+        } while (error);
+        return n;
     }
 
     public static boolean guardarTablero(Tablero tablero, String ruta) {
