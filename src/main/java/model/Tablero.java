@@ -79,9 +79,9 @@ public class  Tablero implements Serializable {
     public void reiniciarTablero() {
         //las columnas funcionan a la inversa
         vaciarTablero();
-        addPieza("Rey", 1, 5, Color.NEGRO);
+        addPieza("Rey", 1, 4, Color.NEGRO);
         addPieza("Rey", 8, 4, Color.BLANCO);
-        addPieza("Reina", 1, 4, Color.NEGRO);
+        addPieza("Reina", 1, 5, Color.NEGRO);
         addPieza("Reina", 8, 5, Color.BLANCO);
         addPieza("Torre", 1, 1, Color.NEGRO);
         addPieza("Torre", 1, 8, Color.NEGRO);
@@ -212,12 +212,12 @@ public class  Tablero implements Serializable {
                 // Una vez comprobado, se deshacen los cambios
                 p.setFila(filaOriginal);
                 p.setColumna(colOriginal);
-                cambiarTurno();
+
                 if (pDestino != null) {
                     if (pDestino.getColor() == Color.BLANCO) piezasBlancas.add(pDestino);
                     else piezasNegras.add(pDestino);
                 }
-                throw new IllegalArgumentException("Movimiento ilegal: Tu rey queda en jaque.\n");
+                throw new IllegalArgumentException("Tu rey esta en jaque. Debes defenderlo.\n");
             }
 
             // Se devuelve la pieza simulada eliminada
@@ -230,6 +230,7 @@ public class  Tablero implements Serializable {
             throw new MovimientoInvalido("Movimiento no permitido: " + e.getMessage() + "\n");
         }
 
+        cambiarTurno();
         this.puntuacionBlanca = getPuntuacionBlanca();
         this.puntuacionNegra = getPuntuacionNegra();
     }
