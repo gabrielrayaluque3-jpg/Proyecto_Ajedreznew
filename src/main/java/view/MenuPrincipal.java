@@ -11,10 +11,8 @@ public class  MenuPrincipal {
     public MenuPrincipal() {
         controller = new TableroController(this);
     }
-public class  MenuPrincipal  {
-    private static Scanner scanner = new Scanner(System.in);
 
-    public static void mostrarEstadoPartida(String tableroDibujado, String turno, int puntosB, int puntosN, String piezasMuertas, boolean jaque) {
+    public void mostrarEstadoPartida(String tableroDibujado, String turno, int puntosB, int puntosN, String piezasMuertas, boolean jaque) {
         System.out.println("--------ESTADO DE LA PARTIDA--------");
         System.out.println("Turno actual: " + turno.toUpperCase());
         if (jaque) System.out.println("¡ATENCIÓN! El rey está en JAQUE ");
@@ -26,7 +24,7 @@ public class  MenuPrincipal  {
         System.out.println("----------------------------------------");
     }
 
-    public static int menuPrincipal() {
+    public int menuPrincipal() {
         System.out.println("1. Seleccionar pieza");
         System.out.println("2. Reiniciar tablero");
         System.out.println("3. Cargar tablero");

@@ -6,9 +6,6 @@ import model.Tablero;
 import utils.Utils;
 import view.MenuPrincipal;
 
-import javax.swing.text.View;
-import java.util.Scanner;
-
 public class  TableroController {
     private Tablero tablero;
     private Color turnoActual;
@@ -115,47 +112,28 @@ public class  TableroController {
 
 }
 
+public void ejecutarTurno() {
+    Scanner sc = new Scanner(System.in);
+    boolean movimientoValido = false;
 
-    public void ejecutarMenu() {
-        Scanner sc = new Scanner(System.in);
-        boolean salir = false;
+    while (!movimientoValido) {
+        try {
+            System.out.print("Introduce casilla origen: ");
+            String origen = sc.nextLine();
+            
+            System.out.print("Introduce casilla destino: ");
+            String destino = sc.nextLine();
 
-        while (!salir) {
-            MenuPrincipal.mostrarEstadoPartida(
-                    tablero.toString(),
-                    turnoActual.toString(),
-                    0, 0,
-                    "Ninguna",
-                    false
-            );
+            tablero.moverPieza(origen, destino);
 
-            int opcion = MenuPrincipal.menuPrincipal();
+            System.out.println("Movimiento realizado con éxito");
+            movimientoValido = true; 
 
-            switch (opcion) {
-                case 1:
-                    System.out.println("-> Seleccionando pieza...");
-                    break;
-                case 2:
-                    System.out.println("-> Reiniciando tablero...");
-                    this.tablero = new Tablero();
-                    break;
-                case 3:
-                    System.out.println("-> Cargando tablero...");
-                    break;
-                case 4:
-                    System.out.print("Introduce el nombre: ");
-                    String nombre=sc.nextLine();
-                    System.out.println("-> Guardando tablero...");
-                    Utils.guardarTablero(this.tablero,nombre);
-                    break;
-                case 0:
-                    System.out.println("Saliendo...");
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-                    break;
-            }
+        } catch (IllegalArgumentException | RuntimeException e) {
+            System.out.println("\n[ERROR]: " + e.getMessage());
+            System.out.println("Por favor, introduce un movimiento legal.\n");
         }
+	    System.out.println(tablero);
     }
+}
 }
