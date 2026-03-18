@@ -1,84 +1,100 @@
 package controller;
 
 import model.Color;
+import model.MovimientoInvalido;
 import model.Pieza;
 import model.Tablero;
+import utils.Utils;
 import view.MenuPrincipal;
 
-import javax.swing.text.View;
-import java.util.Scanner;
+import java.awt.*;
+
+import static utils.Utils.pideString;
 
 public class  TableroController {
     private Tablero tablero;
-    private Color turnoActual;
-    private Pieza piezaSeleccionada;
+    private MenuPrincipal vista;
 
-    public TableroController() {
+    public TableroController( MenuPrincipal vista ) {
         this.tablero = new Tablero();
-        this.turnoActual = Color.BLANCO;
-        this.piezaSeleccionada = null;
+        tablero.reiniciarTablero();
+        this.vista = vista;
     }
 
     public Tablero getTablero() {
         return tablero;
     }
 
-    public Color getTurnoActual() {
-        return turnoActual;
-    }
-
-    public Pieza getPiezaSeleccionada() {
-        return piezaSeleccionada;
-    }
-
-    public void setPiezaSeleccionada(Pieza piezaSeleccionada) {
-        this.piezaSeleccionada = piezaSeleccionada;
-    }
-
-    public void setTurnoActual(Color turnoActual) {
-        this.turnoActual = turnoActual;
-    }
-
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
 
-    public void ejecutarMenu() {
-        boolean salir = false;
-
-        while (!salir) {
-            MenuPrincipal.mostrarEstadoPartida(
-                    tablero.toString(),
-                    turnoActual.toString(),
-                    0, 0,
-                    "Ninguna",
-                    false
-            );
-
-            int opcion = MenuPrincipal.menuPrincipal();
-
-            switch (opcion) {
+    // GESTIONAR PIEZA SELECCIONADA
+    public void menuFuncional() {
+        boolean finalizarMenu=false;
+        while (!finalizarMenu) {
+            vista.mostrarEstadoPartida(tablero);
+            switch (vista.menuPrincipal()) {
                 case 1:
-                    System.out.println("-> Seleccionando pieza...");
+                    gestionarSeleccion();
                     break;
                 case 2:
-                    System.out.println("-> Reiniciando tablero...");
-                    this.tablero = new Tablero();
+                    tablero.reiniciarTablero();
                     break;
                 case 3:
-                    System.out.println("-> Cargando tablero...");
+                    Utils.cargarTablero(tablero, pideString("Introduce la ruta del archivo: "));
                     break;
                 case 4:
-                    System.out.println("-> Guardando tablero...");
+                    Utils.guardarTablero(tablero, pideString("Introduce la ruta del archivo: "));
                     break;
                 case 0:
-                    System.out.println("Saliendo...");
-                    salir = true;
+                    finalizarMenu = true;
                     break;
                 default:
                     System.out.println("Opción no válida.");
-                    break;
             }
         }
     }
+
+    public void gestionarSeleccion() {
+
+        boolean finSubmenu = false;
+
+        while (!finSubmenu) {
+
+            int opcion = vista.menuPiezaSeleccionada();
+
+            switch (opcion) {
+
+                case 1: // MOVER
+
+                    boolean movimientoValido = false;
+                    while (!movimientoValido) {
+                        try {
+                            String origen = pideString("Introduce casilla origen: ");
+                            String destino = pideString("Introduce casilla destino: ");
+
+                            tablero.moverPieza(origen, destino);
+
+                            System.out.println("Movimiento realizado con éxito");
+                            movimientoValido = true;
+                            finSubmenu = true;
+                        } catch (IllegalArgumentException | MovimientoInvalido e) {
+                            System.out.println("\n" + e.getMessage());
+                            System.out.println("Por favor, introduce un movimiento válido.\n");
+                        }
+                        System.out.println(tablero);
+                    }
+                    break;
+
+                case 2: // CANCELAR
+                    finSubmenu = true;
+                    break;
+
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
 }
