@@ -42,7 +42,7 @@ public class  TableroController {
                     tablero.reiniciarTablero();
                     break;
                 case 3:
-                    Utils.cargarTablero(tablero, pideString("Introduce la ruta del archivo: "));
+                    this.tablero=Utils.cargarTablero(tablero, pideString("Introduce la ruta del archivo: "));
                     break;
                 case 4:
                     Utils.guardarTablero(tablero, pideString("Introduce la ruta del archivo: "));
