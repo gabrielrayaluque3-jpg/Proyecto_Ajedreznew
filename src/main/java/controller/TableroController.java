@@ -5,39 +5,65 @@ import model.Pieza;
 import model.Tablero;
 import view.MenuPrincipal;
 
-public class TableroController {
+public class  TableroController {
     private Tablero tablero;
     private Color turnoActual;
     private Pieza piezaSeleccionada;
     private MenuPrincipal vista;
 
-    public TableroController(MenuPrincipal vista) {
+    public TableroController( MenuPrincipal vista ) {
         this.tablero = new Tablero();
-        this.tablero.reiniciarTablero();
         this.turnoActual = Color.BLANCO;
         this.piezaSeleccionada = null;
         this.vista = vista;
     }
 
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public Color getTurnoActual() {
+        return turnoActual;
+    }
+
+    public Pieza getPiezaSeleccionada() {
+        return piezaSeleccionada;
+    }
+
+    public void setPiezaSeleccionada(Pieza piezaSeleccionada) {
+        this.piezaSeleccionada = piezaSeleccionada;
+    }
+
+    public void setTurnoActual(Color turnoActual) {
+        this.turnoActual = turnoActual;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+    // GESTIONAR PIEZA SELECCIONADA
+
+
     public void gestionarSeleccion() {
-        if (piezaSeleccionada == null) return;
 
         boolean finSubmenu = false;
 
         while (!finSubmenu) {
-            // 1. LLAMADA CORREGIDA: Usamos el nombre que tienes en MenuPrincipal
+
             int opcion = vista.menuPiezaSeleccionada(
                     piezaSeleccionada.getClass().getSimpleName()
             );
 
             switch (opcion) {
+
                 case 1: // MOVER
-                    // 2. LLAMADA CORREGIDA: Usamos 'solicitarCoordenadasSeleccion'
-                    // porque es el que existe en tu vista
-                    int[] destino = vista.solicitarCoordenadasSeleccion();
+
+                    int[] destino = vista.solicitarCoordenadas();
 
                     if (destino != null) {
+
                         try {
+
                             tablero.moverPieza(
                                     piezaSeleccionada.getFila(),
                                     piezaSeleccionada.getColumna(),
@@ -48,32 +74,40 @@ public class TableroController {
                             cambiarTurno();
                             piezaSeleccionada = null;
                             finSubmenu = true;
-                            System.out.println("Movimiento realizado con éxito.");
 
                         } catch (IllegalArgumentException e) {
-                            System.out.println("Error: " + e.getMessage());
+
+                            System.out.println("Movimiento no válido: " + e.getMessage());
                         }
                     }
+
                     break;
 
                 case 2: // CANCELAR
+
                     piezaSeleccionada = null;
                     finSubmenu = true;
                     break;
 
                 default:
+
                     System.out.println("Opción no válida.");
-                    break;
             }
         }
     }
 
+
+// CAMBIAR TURNO
+
+
     private void cambiarTurno() {
-        this.turnoActual = (turnoActual == Color.BLANCO) ? Color.NEGRO : Color.BLANCO;
+
+        if (turnoActual == Color.BLANCO) {
+            turnoActual = Color.NEGRO;
+        } else {
+            turnoActual = Color.BLANCO;
+        }
     }
 
-    // Getters y Setters
-    public Tablero getTablero() { return tablero; }
-    public Color getTurnoActual() { return turnoActual; }
-    public void setPiezaSeleccionada(Pieza piezaSeleccionada) { this.piezaSeleccionada = piezaSeleccionada; }
 }
+
