@@ -25,6 +25,8 @@ public class  Tablero implements Serializable {
     public static final int[] fila = new int[8];
     public static final int[] columna = new int[8];
 
+    private Color turnoActual = Color.BLANCO;
+
     public int getPuntuacionBlanca() {
         int sumaVivas = 0;
         for (Pieza p : piezasBlancas) {
@@ -41,12 +43,16 @@ public class  Tablero implements Serializable {
         return this.puntuacionNegra = sumaVivas;
     }
 
-    private int letraAColumna(char letra) {
-        return Character.toUpperCase(letra) - 'A' + 1;
+    public Color getTurnoActual() {
+        return turnoActual;
     }
 
-    private char columnaALetra(int col) {
-        return (char) ('a' + col - 1);
+    public void setTurnoActual(Color turnoActual) {
+        this.turnoActual = turnoActual;
+    }
+
+    private int letraAColumna(char letra) {
+        return Character.toUpperCase(letra) - 'A' + 1;
     }
 
     public String estadoTablero() {
@@ -93,6 +99,7 @@ public class  Tablero implements Serializable {
             addPieza("Peon", 2, i, Color.NEGRO);
             addPieza("Peon", 7, i, Color.BLANCO);
         }
+        this.turnoActual = Color.BLANCO;
     }
 
     public Pieza addPieza(Pieza pieza) {
@@ -170,16 +177,18 @@ public class  Tablero implements Serializable {
         Pieza pDestino = getPieza(filaDestino, colDestino);
         Pieza p = getPieza(filaOrigen, colOrigen);
 
-        if (p == null) throw new IllegalArgumentException("No hay pieza en origen.\n");
-        if (pDestino instanceof Rey) throw new IllegalArgumentException("No se puede capturar al Rey.\n");
+        if (p == null)
+            throw new IllegalArgumentException("No hay pieza en origen.\n");
+        if (p.getColor() == this.turnoActual)
+            throw new IllegalArgumentException("No es tu turno. Turno de: " + this.turnoActual+"\n");
+        if (pDestino instanceof Rey)
+            throw new IllegalArgumentException("No se puede capturar al Rey.\n");
         if (pDestino != null && pDestino.getColor() == p.getColor())
             throw new IllegalArgumentException("No puedes capturar tu propia pieza.\n");
-        if (origen.equals(destino)) {
+        if (origen.equals(destino))
             throw new IllegalArgumentException("La casilla de destino debe ser diferente a la de origen.");
-        }
-        if (!(p instanceof PiezaSaltadora) && hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
+        if (!(p instanceof PiezaSaltadora) && hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino))
             throw new IllegalArgumentException("Hay piezas en medio.\n");
-        }
 
         //Esto para comprobar el jaque, poder volver la pieza a su casilla original
         int filaOriginal = p.getFila();
@@ -203,6 +212,7 @@ public class  Tablero implements Serializable {
                 // Una vez comprobado, se deshacen los cambios
                 p.setFila(filaOriginal);
                 p.setColumna(colOriginal);
+                cambiarTurno();
                 if (pDestino != null) {
                     if (pDestino.getColor() == Color.BLANCO) piezasBlancas.add(pDestino);
                     else piezasNegras.add(pDestino);
@@ -217,7 +227,7 @@ public class  Tablero implements Serializable {
                 capturarPieza(pDestino);
             }
         } catch (MovimientoInvalido e) {
-            throw new IllegalArgumentException("Movimiento no permitido: " + e.getMessage() + "\n");
+            throw new MovimientoInvalido("Movimiento no permitido: " + e.getMessage() + "\n");
         }
 
         this.puntuacionBlanca = getPuntuacionBlanca();
@@ -231,6 +241,14 @@ public class  Tablero implements Serializable {
             piezasNegras.remove(capturada);
         }
         piezasEliminadas.add(capturada);
+    }
+
+    private void cambiarTurno() {
+        if (this.turnoActual == Color.BLANCO) {
+            this.turnoActual = Color.NEGRO;
+        } else {
+            this.turnoActual = Color.BLANCO;
+        }
     }
 
     public boolean esReyEnJaque(Color colorDelRey) {
