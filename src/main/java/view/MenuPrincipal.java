@@ -21,7 +21,7 @@ public class  MenuPrincipal {
         System.out.println("----------------------------------------");
     }
 
-    public int menuPrincipal() {
+    public static int menuPrincipal() {
         System.out.println("1. Seleccionar pieza");
         System.out.println("2. Reiniciar tablero");
         System.out.println("3. Cargar tablero");

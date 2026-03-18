@@ -9,7 +9,7 @@ public class  Peon extends Pieza {
         super(fila, columna, color);
     }
 
-    public Peon() { super(); }
+    public Peon() {  }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {

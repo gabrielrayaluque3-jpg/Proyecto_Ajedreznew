@@ -9,7 +9,7 @@ public class  Reina extends Pieza {
         super(fila, columna, color);
     }
 
-    public Reina() { super(); }
+    public Reina() {  }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {

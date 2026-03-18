@@ -12,7 +12,7 @@ public class  Rey extends Pieza {
         super(fila, columna, color);
     }
 
-    public Rey() { super(); }
+    public Rey() { }
 
     public int getPuntos() {
         return 100;
