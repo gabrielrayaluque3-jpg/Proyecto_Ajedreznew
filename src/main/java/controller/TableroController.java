@@ -39,7 +39,10 @@ public class  TableroController {
                     gestionarSeleccion();
                     break;
                 case 2:
-                    tablero.reiniciarTablero();
+                    String confirmacion = pideString("¿Estás seguro de que quieres reiniciar el tablero? (Si/No): ");
+                    if (confirmacion.equalsIgnoreCase("Si")) {
+                        tablero.reiniciarTablero();
+                    }
                     break;
                 case 3:
                     this.tablero=Utils.cargarTablero(tablero, pideString("Introduce la ruta del archivo: "));
