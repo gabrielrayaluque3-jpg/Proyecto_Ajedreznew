@@ -1,15 +1,22 @@
 package model;
 
+import DataAccess.XMLManager;
 import utils.Utils;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 import java.util.Objects;
 
+@XmlSeeAlso({Rey.class, Reina.class, Torre.class, Alfil.class, Caballo.class, Peon.class})
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class  Pieza implements Serializable {
 
     //las posiciones son del 0 al 7
-    protected int fila;
-    protected int columna;  //las posiciones son del 0 al 7, pero en el tablero serian A-H
+    protected int fila;      // en el tablero, son las filas de 1-8
+    protected int columna;  //en el tablero serian A-H
     protected Color color;  //es necesario el enum Color para saber si es blanca o negra
     //los puntos se añade como un final int en cada clase (final para que no cambie)
 
@@ -68,7 +75,7 @@ public abstract class  Pieza implements Serializable {
         return objetivo == null;
     }
 
-    public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero);
+    public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido;
 
     @Override
     public boolean equals(Object o) {

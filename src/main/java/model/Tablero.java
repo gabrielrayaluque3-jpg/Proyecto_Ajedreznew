@@ -1,13 +1,22 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import static utils.Utils.calcularDireccion;
+import static utils.Utils.*;
 
-public class Tablero implements Serializable {
+@XmlAccessorType (XmlAccessType.FIELD)
+@XmlRootElement(name="tablero")
+public class  Tablero implements Serializable {
+    @XmlElement(name = "piezasBlancas", type = Pieza.class)
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
+    @XmlElement(name = "piezasNegras", type = Pieza.class)
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
+    @XmlElement(name = "piezasEliminadas", type = Pieza.class)
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
 
     public int puntuacionBlanca = 139;
@@ -40,7 +49,216 @@ public class Tablero implements Serializable {
         return (char) ('a' + col - 1);
     }
 
-    public String printTablero() {
+    public String estadoTablero() {
+        return "Piezas blancas: " + piezasBlancas + "\nPiezas negras: " + piezasNegras + "\nPiezas eliminadas: " + piezasEliminadas + "\nPuntuación blanca: " + puntuacionBlanca + "\nPuntuación negra: " + puntuacionNegra;
+    }
+
+    public void vaciarTablero() {
+        piezasBlancas.clear();
+        piezasNegras.clear();
+        piezasEliminadas.clear();
+    }
+
+    public Tablero crearCopiaTablero() {
+        Tablero copia = new Tablero();
+        for (Pieza p : piezasBlancas) {
+            copia.addPieza(p.copiar()); // Usar .copiar()
+        }
+        for (Pieza p : piezasNegras) {
+            copia.addPieza(p.copiar());
+        }
+        return copia;
+    }
+
+    public void reiniciarTablero() {
+        //las columnas funcionan a la inversa
+        vaciarTablero();
+        addPieza("Rey", 1, 5, Color.NEGRO);
+        addPieza("Rey", 8, 4, Color.BLANCO);
+        addPieza("Reina", 1, 4, Color.NEGRO);
+        addPieza("Reina", 8, 5, Color.BLANCO);
+        addPieza("Torre", 1, 1, Color.NEGRO);
+        addPieza("Torre", 1, 8, Color.NEGRO);
+        addPieza("Torre", 8, 1, Color.BLANCO);
+        addPieza("Torre", 8, 8, Color.BLANCO);
+        addPieza("Alfil", 1, 3, Color.NEGRO);
+        addPieza("Alfil", 1, 6, Color.NEGRO);
+        addPieza("Alfil", 8, 3, Color.BLANCO);
+        addPieza("Alfil", 8, 6, Color.BLANCO);
+        addPieza("Caballo", 1, 2, Color.NEGRO);
+        addPieza("Caballo", 1, 7, Color.NEGRO);
+        addPieza("Caballo", 8, 2, Color.BLANCO);
+        addPieza("Caballo", 8, 7, Color.BLANCO);
+        for (int i = 1; i < 9; i++) {
+            addPieza("Peon", 2, i, Color.NEGRO);
+            addPieza("Peon", 7, i, Color.BLANCO);
+        }
+    }
+
+    public Pieza addPieza(Pieza pieza) {
+        if (pieza.getColor() == Color.BLANCO) {
+            piezasBlancas.add(pieza);
+        } else {
+            piezasNegras.add(pieza);
+        }
+        return pieza;
+    }
+
+    public Pieza addPieza(String nombre, int fila, int columna, Color color) {
+        Pieza pieza = null;
+        switch (nombre) {
+            case "Reina":
+                pieza = new Reina(fila, columna, color);
+                break;
+            case "Caballo":
+                pieza = new Caballo(fila, columna, color);
+                break;
+            case "Alfil":
+                pieza = new Alfil(fila, columna, color);
+                break;
+            case "Torre":
+                pieza = new Torre(fila, columna, color);
+                break;
+            case "Peon":
+                pieza = new Peon(fila, columna, color);
+                break;
+            case "Rey":
+                pieza = new Rey(fila, columna, color);
+                break;
+            default:
+                throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
+        }
+        return addPieza(pieza);
+    }
+
+    public Pieza getPieza(int fila, int columna) {
+        for (Pieza pieza : piezasBlancas) {
+            if (pieza.getFila() == fila && pieza.getColumna() == columna) {
+                return pieza;
+            }
+        }
+        for (Pieza pieza : piezasNegras) {
+            if (pieza.getFila() == fila && pieza.getColumna() == columna) {
+                return pieza;
+            }
+        }
+        return null;
+    }
+
+    public boolean hayPiezasEntre(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
+        int filaIncremento = calcularDireccion(filaOrigen, filaDestino);
+        int colIncremento = calcularDireccion(colOrigen, colDestino);
+        int filaActual = filaOrigen + filaIncremento;
+        int colActual = colOrigen + colIncremento;
+
+        while (filaActual != filaDestino || colActual != colDestino) {
+            if (getPieza(filaActual, colActual) != null) {
+                return true;
+            }
+            if (filaActual != filaDestino) filaActual += filaIncremento;
+            if (colActual != colDestino) colActual += colIncremento;
+        }
+        return false;
+    }
+
+    public void moverPieza(String origen, String destino) throws MovimientoInvalido {
+        int filaOrigen = Character.getNumericValue(origen.charAt(0));
+        int colOrigen = letraAColumna(origen.charAt(1));
+        int filaDestino = Character.getNumericValue(destino.charAt(0));
+        int colDestino = letraAColumna(destino.charAt(1));
+
+        Pieza pDestino = getPieza(filaDestino, colDestino);
+        Pieza p = getPieza(filaOrigen, colOrigen);
+
+        if (p == null) throw new IllegalArgumentException("No hay pieza en origen.\n");
+        if (pDestino instanceof Rey) throw new IllegalArgumentException("No se puede capturar al Rey.\n");
+        if (pDestino != null && pDestino.getColor() == p.getColor())
+            throw new IllegalArgumentException("No puedes capturar tu propia pieza.\n");
+        if (origen.equals(destino)) {
+            throw new IllegalArgumentException("La casilla de destino debe ser diferente a la de origen.");
+        }
+        if (!(p instanceof PiezaSaltadora) && hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
+            throw new IllegalArgumentException("Hay piezas en medio.\n");
+        }
+
+        //Esto para comprobar el jaque, poder volver la pieza a su casilla original
+        int filaOriginal = p.getFila();
+        int colOriginal = p.getColumna();
+        Color colorJugador = p.getColor();
+
+        //Esto es un poco lio, por eso comento todo
+        try {
+            //Posicion temporal para simular la pieza
+            p.movimiento(filaDestino, colDestino, this);
+            p.setFila(filaDestino);
+            p.setColumna(colDestino);
+            //se quita temporalmente la pieza de su lista para simular jaque
+            if (pDestino != null) {
+                if (pDestino.getColor() == Color.BLANCO) piezasBlancas.remove(pDestino);
+                else piezasNegras.remove(pDestino);
+            }
+
+            //Esto comprueba que el movimiento no deje a nuestro propio rey en jaque
+            if (esReyEnJaque(colorJugador)) {
+                // Una vez comprobado, se deshacen los cambios
+                p.setFila(filaOriginal);
+                p.setColumna(colOriginal);
+                if (pDestino != null) {
+                    if (pDestino.getColor() == Color.BLANCO) piezasBlancas.add(pDestino);
+                    else piezasNegras.add(pDestino);
+                }
+                throw new IllegalArgumentException("Movimiento ilegal: Tu rey queda en jaque.\n");
+            }
+
+            // Se devuelve la pieza simulada eliminada
+            if (pDestino != null) {
+                if (pDestino.getColor() == Color.BLANCO) piezasBlancas.add(pDestino);
+                else piezasNegras.add(pDestino);
+                capturarPieza(pDestino);
+            }
+        } catch (MovimientoInvalido e) {
+            throw new IllegalArgumentException("Movimiento no permitido: " + e.getMessage() + "\n");
+        }
+
+        this.puntuacionBlanca = getPuntuacionBlanca();
+        this.puntuacionNegra = getPuntuacionNegra();
+    }
+
+    public void capturarPieza(Pieza capturada) {
+        if (capturada.getColor() == Color.BLANCO) {
+            piezasBlancas.remove(capturada);
+        } else {
+            piezasNegras.remove(capturada);
+        }
+        piezasEliminadas.add(capturada);
+    }
+
+    public boolean esReyEnJaque(Color colorDelRey) {
+        Pieza elRey = null;
+        ArrayList<Pieza> aliadas = (colorDelRey == Color.BLANCO) ? piezasBlancas : piezasNegras;
+        ArrayList<Pieza> enemigas = (colorDelRey == Color.BLANCO) ? piezasNegras : piezasBlancas;
+
+        for (Pieza p : aliadas) {
+            if (p instanceof Rey) {
+                elRey = p;
+            }
+        }
+        if (elRey != null) {
+            for (Pieza enemiga : enemigas) {
+                if (enemiga.puedeAtacar(elRey)) {
+                    if (validarTrayectoria(enemiga, elRey.getFila(), elRey.getColumna())) {
+                        if (enemiga instanceof PiezaSaltadora || !hayPiezasEntre(enemiga.getFila(), enemiga.getColumna(), elRey.getFila(), elRey.getColumna())) {
+                            return true; // Hay jaque
+                        }
+                    }
+                }
+            }
+        }
+        return false; // No hay jaque
+    }
+
+    @Override
+    public String toString() {
         String casillaBlanca = "░";
         String casillaNegra = "▓";
         String resultado = "";
@@ -68,170 +286,5 @@ public class Tablero implements Serializable {
         }
         resultado = resultado + "  a b c d e f g h\n";
         return resultado;
-    }
-
-    public void vaciarTablero() {
-        piezasBlancas.clear();
-        piezasNegras.clear();
-        piezasEliminadas.clear();
-    }
-
-    public void reiniciarTablero() {
-        vaciarTablero();
-        addPieza("Rey", 1, 5, Color.BLANCO);
-        addPieza("Rey", 8, 4, Color.NEGRO);
-        addPieza("Reina", 1, 4, Color.BLANCO);
-        addPieza("Reina", 8, 5, Color.NEGRO);
-        addPieza("Torre", 1, 1, Color.BLANCO);
-        addPieza("Torre", 1, 8, Color.BLANCO);
-        addPieza("Torre", 8, 1, Color.NEGRO);
-        addPieza("Torre", 8, 8, Color.NEGRO);
-        addPieza("Alfil", 1, 3, Color.BLANCO);
-        addPieza("Alfil", 1, 6, Color.BLANCO);
-        addPieza("Alfil", 8, 3, Color.NEGRO);
-        addPieza("Alfil", 8, 6, Color.NEGRO);
-        addPieza("Caballo", 1, 2, Color.BLANCO);
-        addPieza("Caballo", 1, 7, Color.BLANCO);
-        addPieza("Caballo", 8, 2, Color.NEGRO);
-        addPieza("Caballo", 8, 7, Color.NEGRO);
-        for (int i = 1; i < 9; i++) {
-            addPieza("Peon", 2, i, Color.BLANCO);
-            addPieza("Peon", 7, i, Color.NEGRO);
-        }
-    }
-
-    private Pieza addPieza(Pieza pieza) {
-        if (pieza.getColor() == Color.BLANCO) {
-            piezasBlancas.add(pieza);
-        } else {
-            piezasNegras.add(pieza);
-        }
-        return pieza;
-    }
-
-    public Pieza addPieza(String nombre, int fila, int columna, Color color) {
-        Pieza pieza = null;
-        switch (nombre) {
-            case "Reina": pieza = new Reina(fila, columna, color); break;
-            case "Caballo": pieza = new Caballo(fila, columna, color); break;
-            case "Alfil": pieza = new Alfil(fila, columna, color); break;
-            case "Torre": pieza = new Torre(fila, columna, color); break;
-            case "Peon": pieza = new Peon(fila, columna, color); break;
-            case "Rey": pieza = new Rey(fila, columna, color); break;
-            default: throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
-        }
-        return addPieza(pieza);
-    }
-
-    public Pieza getPieza(int fila, int columna) {
-        for (Pieza pieza : piezasBlancas) {
-            if (pieza.getFila() == fila && pieza.getColumna() == columna) {
-                return pieza;
-            }
-        }
-        for (Pieza pieza : piezasNegras) {
-            if (pieza.getFila() == fila && pieza.getColumna() == columna) {
-                return pieza;
-            }
-        }
-        return null;
-    }
-
-    // NUEVO MÉTODO PARA EL CONTROLADOR (Recibe INT)
-    public void moverPieza(int filaOrigen, int colOrigen, int filaDestino, int colDestino) {
-        Pieza p = getPieza(filaOrigen, colOrigen);
-        Pieza pDestino = getPieza(filaDestino, colDestino);
-
-        if (p == null) {
-            throw new IllegalArgumentException("No hay ninguna pieza en la posición seleccionada.");
-        while (filaActual != filaDestino || colActual != colDestino) {
-            if (getPieza(filaActual, colActual) != null) {
-                return true;
-            }
-            if (filaActual != filaDestino) filaActual += filaIncremento;
-            if (colActual != colDestino) colActual += colIncremento;
-        }
-
-        // Validación de movimiento
-        if (!p.sePuedeMover(pDestino)) {
-            throw new IllegalArgumentException("Esa pieza no puede moverse así.");
-        }
-
-        // Gestión de capturas
-        if (pDestino != null) {
-            if (pDestino.getColor() == p.getColor()) {
-                throw new IllegalArgumentException("No puedes capturar tus propias piezas.");
-            }
-            if (pDestino instanceof Rey) {
-                throw new IllegalArgumentException("No se puede capturar al Rey.");
-            }
-            capturarPieza(pDestino);
-        int filaDestino = Character.getNumericValue(destino.charAt(0));
-        int colDestino = letraAColumna(destino.charAt(1));
-
-        Pieza pDestino = getPieza(filaDestino, colDestino);
-        Pieza p = getPieza(filaOrigen, colOrigen);
-        if (p == null) {
-            throw new IllegalArgumentException("No hay ninguna pieza en la posición " + filaOrigen + "," + colOrigen + ".");
-        } else if (p.movimiento(filaDestino, colDestino, this)) {
-            if(pDestino!=null) {
-                if (hayPiezasEntre(filaOrigen, colOrigen, filaDestino, colDestino)) {
-                    throw new IllegalArgumentException("Hay piezas entre la posición (" + filaOrigen + "," + colOrigen + ") y (" + filaDestino + "," + colDestino + ").");
-                } else if (!p.sePuedeMover(pDestino)) {
-                    throw new IllegalArgumentException("La pieza no puede moverse a la posición (" + filaDestino + "," + colDestino + ").");
-                } else if (!p.puedeAtacar(pDestino)) {
-                    throw new IllegalArgumentException("La pieza no puede atacar a la posición (" + filaDestino + "," + colDestino + ").");
-                } else if (jaque()) {
-                    throw new IllegalArgumentException("Tu rey está en jaque. No puedes moverte");
-                } else {
-                    p.setFila(filaDestino);
-                    p.setColumna(colDestino);
-                    if (pDestino != null) {
-                        capturarPieza(pDestino);
-                    }
-                }
-            }
-        }
-
-        // Realizar el movimiento físico
-        p.movimiento(filaDestino, colDestino, this);
-
-        // Actualizar puntuaciones
-        getPuntuacionBlanca();
-        getPuntuacionNegra();
-    }
-
-    public void capturarPieza(Pieza capturada) {
-        if (capturada.getColor() == Color.BLANCO) {
-            piezasBlancas.remove(capturada);
-        } else {
-            piezasNegras.remove(capturada);
-        }
-        piezasEliminadas.add(capturada);
-    }
-
-    public boolean jaque() {
-        Rey reyNegro = null;
-        Rey reyBlanco = null;
-
-        for (Pieza p : piezasBlancas) { if (p instanceof Rey) reyBlanco = (Rey) p; }
-        for (Pieza p : piezasNegras) { if (p instanceof Rey) reyNegro = (Rey) p; }
-
-        if (reyBlanco != null) {
-            for (Pieza p : piezasNegras) {
-                if (p.puedeAtacar(reyBlanco)) return true;
-            }
-        }
-        if (reyNegro != null) {
-            for (Pieza p : piezasBlancas) {
-                if (p.puedeAtacar(reyNegro)) return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Piezas blancas: " + piezasBlancas.size() + " | Piezas negras: " + piezasNegras.size();
     }
 }

@@ -3,6 +3,7 @@ package controller;
 import model.Color;
 import model.Pieza;
 import model.Tablero;
+import utils.Utils;
 import view.MenuPrincipal;
 
 public class  TableroController {
@@ -111,3 +112,28 @@ public class  TableroController {
 
 }
 
+public void ejecutarTurno() {
+    Scanner sc = new Scanner(System.in);
+    boolean movimientoValido = false;
+
+    while (!movimientoValido) {
+        try {
+            System.out.print("Introduce casilla origen: ");
+            String origen = sc.nextLine();
+            
+            System.out.print("Introduce casilla destino: ");
+            String destino = sc.nextLine();
+
+            tablero.moverPieza(origen, destino);
+
+            System.out.println("Movimiento realizado con éxito");
+            movimientoValido = true; 
+
+        } catch (IllegalArgumentException | RuntimeException e) {
+            System.out.println("\n[ERROR]: " + e.getMessage());
+            System.out.println("Por favor, introduce un movimiento legal.\n");
+        }
+	    System.out.println(tablero);
+    }
+}
+}

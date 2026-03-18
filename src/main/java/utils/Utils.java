@@ -1,5 +1,18 @@
 package utils;
 
+import DataAccess.XMLManager;
+import model.Tablero;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+
+import model.*;
+
+import java.util.Scanner;
+
 public class  Utils {
     public static void validarPosicion (int fila, int columna){
         if (fila < 1 || fila > 8 || columna < 1 || columna > 8) {
@@ -7,8 +20,11 @@ public class  Utils {
         }
     }
 
+    public static int calcularDistancia(int origen, int destino) {
+        return Math.abs(destino - origen);
+    }
     public static int calcularDireccion(int origen, int destino) {
-        return Math.abs(Integer.compare(destino, origen));
+        return Integer.compare(destino, origen);
     }
 
     public static boolean esDiagonal(int f1, int c1, int f2, int c2) {
@@ -21,4 +37,51 @@ public class  Utils {
 
         return (dirFila == 0 && dirColumna == 1) || (dirFila == 1 && dirColumna == 0);
     }
+    public static boolean validarTrayectoria(Pieza p, int filaDestino, int columnaDestino) {
+        int filaOrigen = p.getFila();
+        int columnaOrigen = p.getColumna();
+
+        //El guin bajo hace que el switch ignore el nombre de la variable
+        switch (p) {
+            case Torre _ -> {
+                return filaOrigen == filaDestino || columnaOrigen == columnaDestino;
+            }
+            case Alfil _ -> {
+                return Math.abs(filaOrigen - filaDestino) == Math.abs(columnaOrigen - columnaDestino);
+            }
+            case Reina _ -> {
+                return filaOrigen == filaDestino || columnaOrigen == columnaDestino || Math.abs(filaOrigen - filaDestino) == Math.abs(columnaOrigen - columnaDestino);
+            }
+            case Caballo _ -> {
+                int diferenciaFila = Math.abs(filaOrigen - filaDestino);
+                int diferenciaColumna = Math.abs(columnaOrigen - columnaDestino);
+                return (diferenciaFila == 2 && diferenciaColumna == 1) || (diferenciaFila == 1 && diferenciaColumna == 2);
+            }
+            case Peon _ -> {
+                int dir = (p.getColor() == Color.BLANCO) ? 1 : -1;
+                return (filaDestino == filaOrigen + dir) && Math.abs(columnaDestino  - columnaOrigen) == 1;
+            }
+            default -> {
+            }
+        }
+        return false;
+    }
+
+    public static Scanner teclado = new Scanner(System.in);
+
+    public static String pideString(String msn) {
+        String cadena=null;
+        System.out.println(msn);
+        cadena = teclado.next();
+        return cadena;
+    }
+
+    public static boolean guardarTablero(Tablero tablero, String ruta) {
+        return XMLManager.writeXML(ruta,ruta);
+    }
+
+    public static Tablero cargarTablero(Tablero tablero, String ruta) {
+        return XMLManager.readXML(tablero, ruta);
+    }
+
 }
