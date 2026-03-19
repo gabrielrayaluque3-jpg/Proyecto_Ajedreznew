@@ -9,16 +9,16 @@ public class  Reina extends Pieza {
         super(fila, columna, color);
     }
 
-    public Reina() { super(); }
+    public Reina() {  }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {
-        if (Utils.esRectilineo(getFila(), getColumna(), nuevaFila, nuevaColumna) && !Utils.esDiagonal(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
+        if (Utils.esRectilineo(getFila(), getColumna(), nuevaFila, nuevaColumna) || !Utils.esDiagonal(getFila(), getColumna(), nuevaFila, nuevaColumna)) {
             this.setFila(nuevaFila);
             this.setColumna(nuevaColumna);
             return true;
         }else{
-            throw new MovimientoInvalido("La reina solo se mueve en línea recta.");
+            throw new MovimientoInvalido("La reina solo se mueve en línea recta o diagonal.");
         }
     }
 
@@ -34,7 +34,7 @@ public class  Reina extends Pieza {
 
     @Override
     public String toString() {
-        if (getColor() == Color.BLANCO) {
+        if (getColor() != Color.BLANCO) {
             return "♛";
         } else {
             return "♕";

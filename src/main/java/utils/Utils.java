@@ -71,14 +71,14 @@ public class  Utils {
     public static Scanner teclado = new Scanner(System.in);
 
     public static String pideString(String msn) {
-        String cadena=null;
+        String cadena;
         System.out.println(msn);
         cadena = teclado.next();
         return cadena;
     }
     public static int pideEntero(String msn) {
         int n = 0;
-        boolean error = false;
+        boolean error;
         do {
             try {
                 System.out.println(msn);
@@ -94,7 +94,7 @@ public class  Utils {
     }
 
     public static boolean guardarTablero(Tablero tablero, String ruta) {
-        return XMLManager.writeXML(ruta,ruta);
+        return XMLManager.writeXML(tablero,ruta);
     }
 
     public static Tablero cargarTablero(Tablero tablero, String ruta) {

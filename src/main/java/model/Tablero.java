@@ -1,9 +1,6 @@
 package model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,11 +9,35 @@ import static utils.Utils.*;
 @XmlAccessorType (XmlAccessType.FIELD)
 @XmlRootElement(name="tablero")
 public class  Tablero implements Serializable {
-    @XmlElement(name = "piezasBlancas", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasBlancas")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasBlancas = new ArrayList<>();
-    @XmlElement(name = "piezasNegras", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasNegras")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasNegras = new ArrayList<>();
-    @XmlElement(name = "piezasEliminadas", type = Pieza.class)
+    @XmlElementWrapper(name = "piezasEliminadas")
+    @XmlElements({
+            @XmlElement(name = "torre", type = Torre.class),
+            @XmlElement(name = "peon", type = Peon.class),
+            @XmlElement(name = "alfil", type = Alfil.class),
+            @XmlElement(name = "caballo", type = Caballo.class),
+            @XmlElement(name = "reina", type = Reina.class),
+            @XmlElement(name = "rey", type = Rey.class)
+    })
     ArrayList<Pieza> piezasEliminadas = new ArrayList<>();
 
     public int puntuacionBlanca = 139;
@@ -47,10 +68,6 @@ public class  Tablero implements Serializable {
         return turnoActual;
     }
 
-    public void setTurnoActual(Color turnoActual) {
-        this.turnoActual = turnoActual;
-    }
-
     private int letraAColumna(char letra) {
         return Character.toUpperCase(letra) - 'A' + 1;
     }
@@ -65,39 +82,28 @@ public class  Tablero implements Serializable {
         piezasEliminadas.clear();
     }
 
-    public Tablero crearCopiaTablero() {
-        Tablero copia = new Tablero();
-        for (Pieza p : piezasBlancas) {
-            copia.addPieza(p.copiar()); // Usar .copiar()
-        }
-        for (Pieza p : piezasNegras) {
-            copia.addPieza(p.copiar());
-        }
-        return copia;
-    }
-
     public void reiniciarTablero() {
         //las columnas funcionan a la inversa
         vaciarTablero();
-        addPieza("Rey", 1, 5, Color.NEGRO);
-        addPieza("Rey", 8, 4, Color.BLANCO);
-        addPieza("Reina", 1, 4, Color.NEGRO);
-        addPieza("Reina", 8, 5, Color.BLANCO);
-        addPieza("Torre", 1, 1, Color.NEGRO);
-        addPieza("Torre", 1, 8, Color.NEGRO);
-        addPieza("Torre", 8, 1, Color.BLANCO);
-        addPieza("Torre", 8, 8, Color.BLANCO);
-        addPieza("Alfil", 1, 3, Color.NEGRO);
-        addPieza("Alfil", 1, 6, Color.NEGRO);
-        addPieza("Alfil", 8, 3, Color.BLANCO);
-        addPieza("Alfil", 8, 6, Color.BLANCO);
-        addPieza("Caballo", 1, 2, Color.NEGRO);
-        addPieza("Caballo", 1, 7, Color.NEGRO);
-        addPieza("Caballo", 8, 2, Color.BLANCO);
-        addPieza("Caballo", 8, 7, Color.BLANCO);
+        addPieza("Rey", 1, 5, Color.BLANCO);
+        addPieza("Rey", 8, 5, Color.NEGRO);
+        addPieza("Reina", 1, 4, Color.BLANCO);
+        addPieza("Reina", 8, 4, Color.NEGRO);
+        addPieza("Torre", 1, 1, Color.BLANCO);
+        addPieza("Torre", 1, 8, Color.BLANCO);
+        addPieza("Torre", 8, 1, Color.NEGRO);
+        addPieza("Torre", 8, 8, Color.NEGRO);
+        addPieza("Alfil", 1, 3, Color.BLANCO);
+        addPieza("Alfil", 1, 6, Color.BLANCO);
+        addPieza("Alfil", 8, 3, Color.NEGRO);
+        addPieza("Alfil", 8, 6, Color.NEGRO);
+        addPieza("Caballo", 1, 2, Color.BLANCO);
+        addPieza("Caballo", 1, 7, Color.BLANCO);
+        addPieza("Caballo", 8, 2, Color.NEGRO);
+        addPieza("Caballo", 8, 7, Color.NEGRO);
         for (int i = 1; i < 9; i++) {
-            addPieza("Peon", 2, i, Color.NEGRO);
-            addPieza("Peon", 7, i, Color.BLANCO);
+            addPieza("Peon", 2, i, Color.BLANCO);
+            addPieza("Peon", 7, i, Color.NEGRO);
         }
         this.turnoActual = Color.BLANCO;
     }
@@ -112,29 +118,15 @@ public class  Tablero implements Serializable {
     }
 
     public Pieza addPieza(String nombre, int fila, int columna, Color color) {
-        Pieza pieza = null;
-        switch (nombre) {
-            case "Reina":
-                pieza = new Reina(fila, columna, color);
-                break;
-            case "Caballo":
-                pieza = new Caballo(fila, columna, color);
-                break;
-            case "Alfil":
-                pieza = new Alfil(fila, columna, color);
-                break;
-            case "Torre":
-                pieza = new Torre(fila, columna, color);
-                break;
-            case "Peon":
-                pieza = new Peon(fila, columna, color);
-                break;
-            case "Rey":
-                pieza = new Rey(fila, columna, color);
-                break;
-            default:
-                throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
-        }
+        Pieza pieza = switch (nombre) {
+            case "Reina" -> new Reina(fila, columna, color);
+            case "Caballo" -> new Caballo(fila, columna, color);
+            case "Alfil" -> new Alfil(fila, columna, color);
+            case "Torre" -> new Torre(fila, columna, color);
+            case "Peon" -> new Peon(fila, columna, color);
+            case "Rey" -> new Rey(fila, columna, color);
+            default -> throw new IllegalArgumentException("Nombre de pieza no válido: " + nombre);
+        };
         return addPieza(pieza);
     }
 
@@ -179,7 +171,7 @@ public class  Tablero implements Serializable {
 
         if (p == null)
             throw new IllegalArgumentException("No hay pieza en origen.\n");
-        if (p.getColor() == this.turnoActual)
+        if (p.getColor() != this.turnoActual)
             throw new IllegalArgumentException("No es tu turno. Turno de: " + this.turnoActual+"\n");
         if (pDestino instanceof Rey)
             throw new IllegalArgumentException("No se puede capturar al Rey.\n");
@@ -212,12 +204,12 @@ public class  Tablero implements Serializable {
                 // Una vez comprobado, se deshacen los cambios
                 p.setFila(filaOriginal);
                 p.setColumna(colOriginal);
-                cambiarTurno();
+
                 if (pDestino != null) {
                     if (pDestino.getColor() == Color.BLANCO) piezasBlancas.add(pDestino);
                     else piezasNegras.add(pDestino);
                 }
-                throw new IllegalArgumentException("Movimiento ilegal: Tu rey queda en jaque.\n");
+                throw new IllegalArgumentException("Tu rey esta en jaque. Debes defenderlo.\n");
             }
 
             // Se devuelve la pieza simulada eliminada
@@ -230,6 +222,7 @@ public class  Tablero implements Serializable {
             throw new MovimientoInvalido("Movimiento no permitido: " + e.getMessage() + "\n");
         }
 
+        cambiarTurno();
         this.puntuacionBlanca = getPuntuacionBlanca();
         this.puntuacionNegra = getPuntuacionNegra();
     }

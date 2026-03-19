@@ -39,8 +39,8 @@ public abstract class  Pieza implements Serializable {
     }
 
     public void setFila(int fila) {
-        if (fila < 0 || fila > 7) {
-            throw new IllegalArgumentException("La fila debe estar entre 0 y 7. Valor recibido: " + fila);
+        if (fila < 1 || fila > 8) {
+            throw new IllegalArgumentException("La fila debe estar entre 1 y 8. Valor recibido: " + fila);
         }else {
             this.fila = fila;
         }
@@ -51,8 +51,8 @@ public abstract class  Pieza implements Serializable {
     }
 
     public void setColumna(int columna) {
-        if (columna < 0 || columna > 7) {
-            throw new IllegalArgumentException("La columna debe estar entre 0 y 7. Valor recibido: " + columna);
+        if (columna < 1 || columna > 8) {
+            throw new IllegalArgumentException("La columna debe estar entre 1 y 8. Valor recibido: " + columna);
         }else {
             this.columna = columna;
         }
@@ -69,10 +69,6 @@ public abstract class  Pieza implements Serializable {
         else{
             return this.color != objetivo.getColor();
         }
-    }
-
-    public boolean sePuedeMover(Pieza objetivo){
-        return objetivo == null;
     }
 
     public abstract boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido;

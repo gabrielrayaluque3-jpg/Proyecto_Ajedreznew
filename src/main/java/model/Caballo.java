@@ -11,7 +11,7 @@ public class Caballo extends Pieza implements PiezaSaltadora, Serializable {
         super(fila, columna, color);
     }
 
-    public Caballo() { super(); }
+    public Caballo() {  }
 
     @Override
     public boolean movimiento(int nuevaFila, int nuevaColumna, Tablero tablero) throws MovimientoInvalido {
@@ -43,7 +43,7 @@ public class Caballo extends Pieza implements PiezaSaltadora, Serializable {
 
     @Override
     public String toString() {
-        if (getColor() == Color.BLANCO) {
+        if (getColor() != Color.BLANCO) {
             return "♞";
         } else {
             return "♘";
