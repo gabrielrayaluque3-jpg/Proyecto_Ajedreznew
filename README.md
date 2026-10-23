@@ -40,7 +40,8 @@ Proyecto_Ajedreznew/
 - [ ] Jugar contra el ordenador
 - [ ] Historial de movimientos
 
-## 👤 Autor
+## 👤 Autores
 
 **Gabriel Raya Luque** · Estudiante de DAM
 [GitHub](https://github.com/gabrielrayaluque3-jpg)
+**Tomás Pérez Reche** · Estudiante de DAM
