@@ -44,4 +44,6 @@ Proyecto_Ajedreznew/
 
 **Gabriel Raya Luque** · Estudiante de DAM
 [GitHub](https://github.com/gabrielrayaluque3-jpg)
+
 **Tomás Pérez Reche** · Estudiante de DAM
+[GitHub](https://github.com/tprxd07)
